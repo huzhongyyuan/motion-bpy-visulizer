@@ -45,19 +45,25 @@ for path in sorted(out.glob('*/scene.blend')):
     glyph_audit=json.loads((out/'blender_audit.json').read_text())
     if 'camera_ghost_frames' in glyph_audit:
         samples=glyph_audit['sample_frames']
+        boundaries=job.get('shot_boundaries') or [0,meta['frames']]
+        shot=lambda f: int(np.searchsorted(boundaries,f,side='right')-1)
         if 'vertices' in arrays:
-            expected=len({arrays['vertices'][f].tobytes() for f in samples})
+            expected=len({(shot(f),arrays['vertices'][f].tobytes()) for f in samples})
             assert len(bpy.data.collections['MotionGhosts'].objects)==expected
         if 'c2w' in arrays and job.get('camera_style')=='icon':
-            expected=len({(arrays['c2w'][f].tobytes(),arrays['K'][f].tobytes()) for f in samples})
+            expected=len({(shot(f),arrays['c2w'][f].tobytes(),arrays['K'][f].tobytes()) for f in samples})
             actual=sum(o.name.startswith('Camera model ') and o.type=='EMPTY' for o in bpy.data.collections['CameraGhosts'].objects)
             assert actual==expected,(actual,expected)
             if job.get('camera_labels')=='time':
-                expected=min(5,len({arrays['c2w'][f,:3,3].tobytes() for f in samples}))
+                expected=min(5,len({(shot(f),arrays['c2w'][f,:3,3].tobytes()) for f in samples}))
                 labels=[o for o in bpy.data.collections['CameraGhosts'].objects if o.type=='FONT']
                 assert len(labels)==expected
                 if len(samples)>1 and expected==1:
                     assert '-' in labels[0].data.body
+    if job.get('shot_boundaries') and 'c2w' in arrays:
+        expected_edges=set(range(meta['frames']-1))-{b-1 for b in job['shot_boundaries'][1:-1]}
+        actual_edges={int(o.name.split()[-1]) for o in bpy.data.collections['CameraPath'].objects if o.name.startswith('Camera path ')}
+        assert actual_edges==expected_edges,(actual_edges,expected_edges)
     if 'time_direction' in job:
         errors['material_max_error'] = 0.
     for f in range(meta['frames']):

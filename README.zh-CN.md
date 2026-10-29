@@ -12,7 +12,21 @@
 
 [在线查看全部 Demo](https://huzhongyyuan.github.io/motion-bpy-visulizer/demos/) · [离线总览](docs/demos/index.html)
 
-22 个示例、20 张时序图、6 段视频；人体均使用 SMPL-H 网格。两种相机外观、透明背景、时序渐变、多色、关键帧及固定/环绕机位都有示例。[媒体来源与许可](docs/ASSETS.md)。
+28 个示例、26 张图、11 段视频；人体均使用 SMPL-H 网格。两种相机外观、透明背景、时序渐变、多色、关键帧及固定/环绕机位都有示例。[媒体来源与许可](docs/ASSETS.md)。
+
+## 更多示例
+
+![多镜头：世界视角与每个镜头实际拍到的画面](docs/demos/assets/multishot_storyboard.png)
+
+| 实际相机视角 | 2D 网格投影 |
+| --- | --- |
+| ![相机视角](docs/demos/assets/demo_07.gif) | ![2D轮廓](docs/demos/assets/projection_silhouette.gif) |
+| **SMPL 联合动画** | **2D 网格线** |
+| ![联合动画](docs/demos/assets/demo_06.gif) | ![2D网格线](docs/demos/assets/projection_wireframe.gif) |
+| **多色关键帧** | **透明时序图** |
+| ![多色关键帧](docs/demos/assets/demo_11.png) | ![透明时序图](docs/demos/assets/demo_15.png) |
+
+新增 `motion-bpy-visulizer project`：轮廓、网格线、网格顶点投影及像素坐标 UV 导出。新增 `render --storyboard --shot-boundaries ...`：左侧世界总览，右侧每镜真实画面，同色对应并标注帧号、Shot 和 Prompt。硬切处不连接相机轨迹。[完整用法](docs/USAGE.md)。
 
 ## 使用
 
@@ -39,6 +53,12 @@ motion-bpy-visulizer render --motion /你的路径/smpl_world_mesh.npz \
 源码及程序生成的示例采用 MIT 协议。SMPL 系列模型、第三方数据和私人动作不包含在开源包内，仍遵循各自许可。完整配置与限制见 [英文文档](README.md)。
 
 ## 透明图与地面轨迹
+
+加 **`--export-elements`** 可分开导出每个采样时刻的人体、相机、路径、地板、箭头、时间标签，以及分镜面板、边框和文字。全部使用带 Alpha 的 PNG，同时提供完整画布、紧裁切图、位置偏移记录及 ZIP 下载。[逐元素提取](docs/USAGE.md#9-extract-transparent-editing-elements)。MP4/GIF 预览为白底；透明动画使用 PNG 序列。
+
+![可单独编辑的透明元素](docs/demos/assets/transparent-elements-v050.png)
+
+[下载 3D／分镜透明元素](docs/demos/assets/transparent_elements.zip) · [下载 2D 人体／框线透明元素](docs/demos/assets/projection_elements.zip)。
 
 ```bash
 motion-bpy-visulizer render --input combined.npz --mode all \
@@ -117,4 +137,4 @@ motion-bpy-visulizer render --input combined.npz --mode all \
 
 ## 名称兼容
 
-对外名称、仓库、安装包和主命令统一为 `motion-bpy-visulizer`，拼写按此名称保留。旧命令 `motionmontage-viz` 仍可使用；Python 导入命名空间 `motionmontage_visualizer` 保持兼容。v0.4.3 只更新命名与文档，Demo 保留原来的渲染版本。
+对外名称、仓库、安装包和主命令统一为 `motion-bpy-visulizer`，拼写按此名称保留。旧命令 `motionmontage-viz` 仍可使用；Python 导入命名空间 `motionmontage_visualizer` 保持兼容。v0.5.0 新增 2D 网格投影和分镜总览；既有 Demo 保留原来的渲染版本。

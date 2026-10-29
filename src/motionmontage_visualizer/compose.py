@@ -20,16 +20,14 @@ def font(size):
     return ImageFont.load_default()
 
 
-def caption(image, label, job, footer):
+def caption(image, label, job, footer, elements=None):
     w, h = image.size; top = 92 if job['prompt'] else 64; bottom = 54
     transparent = job.get('transparent', False)
-    result = Image.new('RGBA' if transparent else 'RGB',
-                       (w+(w%2), h+top+bottom+(h%2)), (0, 0, 0, 0) if transparent else 'white')
-    if transparent:
-        result.alpha_composite(image.convert('RGBA'), (0, top))
-    else:
-        result.paste(image.convert('RGB'), (0, top))
-    draw = ImageDraw.Draw(result); title_font = font(max(13, min(22, w//27)))
+    size=(w+(w%2),h+top+bottom+(h%2));layers=[]
+    def layer(name):
+        canvas=Image.new('RGBA',size,(0,0,0,0));layers.append((name,canvas));return canvas,ImageDraw.Draw(canvas)
+    canvas,draw=layer('scene');canvas.alpha_composite(image.convert('RGBA'),(0,top))
+    _,draw=layer('title');title_font = font(max(13, min(22, w//27)))
     small = font(max(10, min(15, w//40)))
     draw.text((14, 10), LABELS[label], fill='#172738', font=title_font)
     if job['prompt']:
@@ -44,18 +42,28 @@ def caption(image, label, job, footer):
         # Long prompts receive their own readable caption file instead of overlapping the image.
         shown = lines if len(lines) <= 2 else ['Full prompt: see index.html / job.json']
         for i, line in enumerate(shown):
+            _,draw=layer(f'prompt_{i+1:02d}')
             draw.text((14, 38+i*18), line, fill='#34465a', font=small)
     else:
+        _,draw=layer('view_label')
         draw.text((14, 38), 'Fixed world observer' if label != 'camera-view' else 'Original poses + intrinsics', fill='#536174', font=small)
+    _,draw=layer('time_samples')
     draw.text((14, top+h+8), footer, fill='#34465a', font=small)
     x = 14
     for name, key in (('Motion', 'motion'), ('Camera', 'camera')):
+        _,draw=layer('legend_'+key)
         palette = job.get(key+'_palette') or [job[key+'_color']]
         for i,color in enumerate(palette):
             draw.rectangle((x+i*8, top+h+33, x+(i+1)*8, top+h+43), fill=color)
         draw.text((x+len(palette)*8+6, top+h+29), name, fill='#34465a', font=small)
         x += max(85, w//4, len(palette)*8+65)
-    draw.text((x, top+h+29), 'Colour follows time', fill='#536174', font=small)
+    _,draw=layer('time_colour_label');draw.text((x, top+h+29), 'Colour follows time', fill='#536174', font=small)
+    result=Image.new('RGBA',size,(0,0,0,0) if transparent else 'white')
+    for _,canvas in layers:result.alpha_composite(canvas)
+    if not transparent:result=result.convert('RGB')
+    if elements:
+        from .elements import save_layers
+        save_layers(elements,layers)
     return result
 
 
@@ -75,7 +83,8 @@ def compose_outputs(out, job, ffmpeg, ffprobe):
         if (folder/'temporal_raw.png').exists():
             stamps = ', '.join(f'{f/fps:.2f}' for f in audit['sample_frames'])
             with Image.open(folder/'temporal_raw.png') as image:
-                caption(image, mode, job, f'Samples (seconds): {stamps}').save(folder/'temporal.png')
+                caption(image, mode, job, f'Samples (seconds): {stamps}',
+                        folder/'annotations/elements' if job.get('export_elements') else None).save(folder/'temporal.png')
             media.append('<img src="'+mode+'/temporal.png" alt="Temporal montage">')
         if {'video', 'gif'} & set(job['outputs']):
             annotated = folder/'annotated_frames'; annotated.mkdir()
@@ -119,6 +128,12 @@ def compose_outputs(out, job, ffmpeg, ffprobe):
         if 'blend' in job['outputs'] and (folder/'scene.blend').exists():
             media.append(f'<a href="{mode}/scene.blend">Editable Blender scene</a>')
         sections.append(f'<section><h2>{LABELS[mode]}</h2>'+''.join(media)+'</section>')
+    if job.get('storyboard'):
+        from .storyboard import compose_storyboard
+        records['storyboard'] = compose_storyboard(out,job)
+        sections.append('<section><h2>Multishot storyboard</h2><a href="storyboard.png"><img src="storyboard.png" alt="World view and actual shot frames"></a><a href="storyboard_manifest.json">Panel provenance</a></section>')
+    if job.get('export_elements'):
+        sections.append('<section><h2>Transparent editable elements</h2><p>Aligned RGBA PNGs plus tight crops and offsets; subjects, cameras, paths, stage, labels, panel borders and arrows are separate.</p><a href="transparent_elements.zip" download>Download all PNG elements</a></section>')
     text = f'''<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>motion-bpy-visulizer</title><style>body{{max-width:1320px;margin:40px auto;padding:0 24px;font:16px/1.6 system-ui;color:#172738;background:#f4f7f9}}h1{{font-size:34px}}main{{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px}}section{{background:white;border-radius:12px;padding:20px}}img,video{{width:100%;height:auto;display:block;margin:12px 0}}a{{display:inline-block;margin-right:18px;color:#166a89}}code{{background:#e4edf0;padding:3px}}p{{max-width:980px}}</style>
 <h1>motion-bpy-visulizer</h1><p>{html.escape(job['prompt'])}</p>

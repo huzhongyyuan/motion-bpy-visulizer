@@ -31,6 +31,13 @@ def style_color(job, modality, frame, frames, *, linear=True, path=False):
     if not 0 <= frame < frames:
         raise ValueError('Frame outside clip')
     t = frame/max(1, frames-1)
+    palette = job.get(f'{modality}_palette', [])
+    boundaries = job.get('shot_boundaries')
+    if boundaries:
+        shot=int(np.searchsorted(boundaries,frame,side='right')-1)
+        start,end=boundaries[shot:shot+2]
+        t=(frame-start)/max(1,end-start-1)
+        if palette:palette=[palette[shot%len(palette)]]
     if job.get('time_direction', 'forward') == 'reverse':
         t = 1-t
     t = t**job.get('time_gamma', 1.)
@@ -39,7 +46,6 @@ def style_color(job, modality, frame, frames, *, linear=True, path=False):
     light = job.get('lighten', .8)
     early = parse_hex(start) if start else late*(1-light)+light
     rgb = early*(1-t)+late*t
-    palette = job.get(f'{modality}_palette', [])
     if palette:
         colours = np.array([parse_hex(x) for x in palette])
         if job.get('palette_mode','segments') == 'smooth':

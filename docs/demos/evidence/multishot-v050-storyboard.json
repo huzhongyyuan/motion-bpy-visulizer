@@ -1,0 +1,83 @@
+{
+  "demo_id": "multishot-v050-storyboard",
+  "render_status": "PASS",
+  "renderer_version": "0.5.0",
+  "frames": 71,
+  "fps": 20.0,
+  "body_model": "SMPL-H",
+  "prompt": "Side-track full body, cut to static medium shot, cut to opposite-side tracking; a person walks.",
+  "source_receipt_sha256": "c9ea92944e8124eda44e40892cc5fc7a8cc8402274d9e8eceba48731c5452d21",
+  "media_sha256": {
+    "assets/multishot_storyboard.png": "54222ee939672acfae68166e72427142dfad5b75fbd0202c9d3497a468752502",
+    "assets/multishot_storyboard.mp4": "560b0035271594c2611b4be736c63aa9a6acc20b167328925fe415401b1cca87",
+    "assets/multishot_storyboard.gif": "1c09e2fbb59977d6e29126f60470b297b5e09b97683b888d56262d80079da446"
+  },
+  "scope": "Illustrative authored-camera/SMPL mesh visualization, not a learned prediction. Raw inputs and internal paths are not distributed.",
+  "panel_binding": {
+    "panels": [
+      {
+        "shot": 1,
+        "clip_frame_zero_based": 12,
+        "clip_frame_one_based": 13,
+        "time_seconds": 0.6,
+        "source_frame_index": 53,
+        "image_sha256": "5e42f49a5d35fbc6603482a4ded19f93849f519ef1739e559ade398b89627f4b",
+        "border_srgb": [
+          100,
+          172,
+          210
+        ]
+      },
+      {
+        "shot": 2,
+        "clip_frame_zero_based": 35,
+        "clip_frame_one_based": 36,
+        "time_seconds": 1.75,
+        "source_frame_index": 76,
+        "image_sha256": "6563c688649784173f959c8ce66abde2d470ca1f0c6861df8310b19626f2625b",
+        "border_srgb": [
+          160,
+          115,
+          205
+        ]
+      },
+      {
+        "shot": 3,
+        "clip_frame_zero_based": 58,
+        "clip_frame_one_based": 59,
+        "time_seconds": 2.9,
+        "source_frame_index": 99,
+        "image_sha256": "7fd19c0b6c4f13163f2eeee42dd5b80486f9ae49050ac903932bde61620b7f45",
+        "border_srgb": [
+          210,
+          148,
+          101
+        ]
+      }
+    ],
+    "shot_boundaries": [
+      0,
+      24,
+      47,
+      71
+    ],
+    "world_image_sha256": "893a82f96cbf513d8b314c4007b197956cdcd53567ace2888c46033f38e4244d",
+    "output_sha256": "54222ee939672acfae68166e72427142dfad5b75fbd0202c9d3497a468752502",
+    "scope": "All right-hand panels are rendered input-camera frames; resized to layout without crop or camera modification."
+  },
+  "saved_scene_replay": {
+    "motion-camera": {
+      "mesh_max_m": 7.149122192018353e-07,
+      "pose_max": 2.3810330329609997e-07,
+      "projection_max_px": 0.000660603213586547,
+      "material_max_error": 2.9742418639067125e-08
+    }
+  },
+  "shot_boundaries": [
+    0,
+    24,
+    47,
+    71
+  ],
+  "clip_frame_numbers": "One based in image labels; zero based in the panel manifest."
+}

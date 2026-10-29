@@ -9,6 +9,7 @@ from bpy_extras.object_utils import world_to_camera_view
 from .colors import color_at, srgb_to_linear, style_color, parse_hex
 from .geometry import bounds, frustum_points, display_frustum_points, sample_frames, stage_geometry, path_arrows, identical_sample_groups, representative_sample
 from .camera_decor import camera_icon, arrow, timestamp
+from .storyboard import grouped_samples, camera_path_edges, shot_ranges, panel_frames
 
 
 def material(name, rgb, roughness=.62):
@@ -97,6 +98,9 @@ def run(out):
     scene.world.node_tree.nodes['Background'].inputs[0].default_value = (.82, .85, .89, 1)
     scene.world.node_tree.nodes['Background'].inputs[1].default_value = .35
     collections = {}
+    element_groups=[]
+    def register(identity,objects,kind,modality=None,frames=None):
+        element_groups.append({'id':identity,'objects':list(objects),'kind':kind,'modality':modality,'frames':frames or []})
     for name in ('MotionLive', 'MotionGhosts', 'MotionPath', 'CameraLive', 'CameraGhosts', 'CameraPath', 'Presentation'):
         c = bpy.data.collections.new(name); scene.collection.children.link(c); collections[name] = c
     lo, hi = bounds(seq); stage = stage_geometry(seq, job.get('ground_padding',.25)); extent = max(float((hi-lo).max()), 1.)
@@ -116,10 +120,11 @@ def run(out):
                 for tick, value in ((max(0, f), 0.), (f+1, 1.), (f+2, 0.)):
                     key.value = value; key.keyframe_insert('value', frame=tick)
             set_linear(body.data.shape_keys)
-        for group in identical_sample_groups([v],samples):
+        for group in grouped_samples([v],samples,job,T):
             f=representative_sample(group,job.get('keyframes',[]))
             mat = material(f'Motion t={f/fps:.3f}', style_color(job, 'motion', int(f), T))
-            mesh_object(f'Motion ghost {f:06d}', v[f], faces, mat, collections['MotionGhosts'])
+            ghost=mesh_object(f'Motion ghost {f:06d}', v[f], faces, mat, collections['MotionGhosts'])
+            register(f'motion_{f:06d}',[ghost],'body','motion',group)
         roots = seq['joints'][:, 0] if 'joints' in seq else (v.min(axis=1)+v.max(axis=1))/2
     elif 'joints' in seq:
         joints = seq['joints']; edges = seq['edges']; roots = joints[:, 0]
@@ -130,11 +135,11 @@ def run(out):
                 for p, co in zip(ob.data.splines[0].points, joints[f, [a, b]]):
                     p.co = (*co, 1); p.keyframe_insert('co', frame=f+1)
             set_linear(ob.data)
-        for group in identical_sample_groups([joints],samples):
+        for group in grouped_samples([joints],samples,job,T):
             f=representative_sample(group,job.get('keyframes',[]))
             mat = material(f'Motion t={f/fps:.3f}', style_color(job, 'motion', int(f), T))
-            for n, (a, b) in enumerate(edges):
-                curve(f'Ghost bone {f}:{n}', joints[f, [a, b]], radius*2, mat, collections['MotionGhosts'])
+            bones=[curve(f'Ghost bone {f}:{n}', joints[f, [a, b]], radius*2, mat, collections['MotionGhosts']) for n,(a,b) in enumerate(edges)]
+            register(f'motion_{f:06d}',bones,'body','motion',group)
     else:
         roots = None
     if roots is not None:
@@ -144,6 +149,7 @@ def run(out):
         for f in range(T-1):
             mat = material(f'Motion path {f}', style_color(job, 'motion', f, T, path=True))
             curve(f'Motion path {f}', roots[f:f+2], radius*.6, mat, collections['MotionPath'])
+        register('motion_path',collections['MotionPath'].objects,'path','motion')
 
     source = None
     camera_labels = []
@@ -178,7 +184,8 @@ def run(out):
             for ob, segment in zip(glyphs, segments):
                 for point, co in zip(ob.data.splines[0].points, segment):
                     point.co = (*co, 1); point.keyframe_insert('co', frame=f+1)
-        for group in identical_sample_groups([poses,K],samples):
+        for group in grouped_samples([poses,K],samples,job,T):
+            previous=set(collections['CameraGhosts'].objects)
             f=representative_sample(group,job.get('keyframes',[]))
             camera_ghost_frames.append(f)
             corners = display_corners(K[f]) @ poses[f, :3, :3].T + poses[f, :3, 3]
@@ -189,21 +196,27 @@ def run(out):
             for i in range(4):
                 curve(f'Camera ghost {f}:ray{i}', [centre, corners[i]], radius*(.42 if icon_style else 1), mat, collections['CameraGhosts'])
             curve(f'Camera ghost {f}:frame', corners, radius*(.6 if icon_style else 1), mat, collections['CameraGhosts'], closed=True)
+            register(f'camera_{f:06d}',set(collections['CameraGhosts'].objects)-previous,'camera','camera',group)
         if job.get('camera_labels','time') == 'time':
-            label_groups=identical_sample_groups([poses[:,:3,3]],samples)
+            label_groups=grouped_samples([poses[:,:3,3]],samples,job,T)
             for i in np.unique(np.linspace(0,len(label_groups)-1,min(5,len(label_groups))).round().astype(int)):
                 group=label_groups[i];f=group[-1]
                 centre = poses[f,:3,3]
                 text=f'{f/fps:.2f}s' if len(group)==1 else f'{group[0]/fps:.2f}-{group[-1]/fps:.2f}s'
                 label = timestamp(f'Camera timestamp {f}',text,centre+np.array([0,0,glyph_depth*.75]),(0,0,0),glyph_depth*.24,dark,collections['CameraGhosts'])
                 camera_labels.append(label)
-        for f in range(T-1):
+                register(f'camera_label_{f:06d}',[label],'time-label','camera',group)
+        for f in camera_path_edges(job,T):
             mat = material(f'Camera path {f}', style_color(job, 'camera', f, T, path=True))
             curve(f'Camera path {f}', poses[f:f+2, :3, 3], radius*.8, mat, collections['CameraPath'])
+        register('camera_path',collections['CameraPath'].objects,'path','camera')
         if job.get('camera_arrows',True):
-            for i,(position,direction,f) in enumerate(path_arrows(poses[:,:3,3],min(4,max(1,len(samples)-1)))):
-                mat = material(f'Camera direction {i}',style_color(job,'camera',f,T,path=True))
-                arrow(f'Camera direction {i}',position,direction,glyph_depth*.28,mat,collections['CameraPath'])
+            for start,end in shot_ranges(job,T):
+                for i,(position,direction,local_f) in enumerate(path_arrows(poses[start:end,:3,3],min(4,max(1,len(samples)-1)))):
+                    f=start+local_f
+                    mat = material(f'Camera direction {start}:{i}',style_color(job,'camera',f,T,path=True))
+                    marker=arrow(f'Camera direction {start}:{i}',position,direction,glyph_depth*.28,mat,collections['CameraPath'])
+                    register(f'camera_arrow_{start:06d}_{i}',[marker],'direction-arrow','camera',[f])
 
     # Neutral stage and fixed observer belong to presentation, never to the imported arrays.
     thickness = job.get('ground_thickness', .02)
@@ -222,6 +235,7 @@ def run(out):
     plane.name = 'Presentation ground'
     plane.hide_render = job.get('ground', 'checker') == 'none'
     plane.hide_viewport = plane.hide_render
+    if not plane.hide_render:register('ground',[plane],'ground')
     mat = material('Neutral ground', srgb_to_linear(parse_hex(job.get('ground_color','#555b63'))) if job.get('ground') == 'solid' else (.72,.74,.76)); plane.data.materials.append(mat)
     nodes = mat.node_tree.nodes; checker = nodes.new('ShaderNodeTexChecker')
     checker.inputs['Color1'].default_value = (.68, .70, .72, 1)
@@ -248,6 +262,7 @@ def run(out):
 
     audit = {'blender_version': bpy.app.version_string, 'frames': T, 'fps': fps,
              'camera_ghost_frames':camera_ghost_frames,
+             'shot_boundaries':job.get('shot_boundaries',[]),'camera_path_edges':camera_path_edges(job,T),
              'sample_frames': samples.tolist(), 'stage_geometry': stage if job.get('ground') == 'solid' else None,
              'style_samples': {m: [style_color(job,m,int(f),T,linear=False).tolist() for f in samples] for m in ('motion','camera')},
              'body_max_error_m': 0., 'camera_max_error': 0.,
@@ -314,6 +329,9 @@ def run(out):
         audit['modes'][mode] = {'montage_visible': [name for name, c in collections.items() if not c.hide_render]}
         if 'sequence' in job['outputs']:
             scene.render.filepath = str(destination/'temporal_raw.png'); bpy.ops.render.render(write_still=True)
+        if job.get('export_elements'):
+            from .elements import export_blender_elements
+            export_blender_elements(destination/'elements',scene,element_groups,mode)
         visibility(mode)
         audit['modes'][mode]['animation_visible'] = [name for name, c in collections.items() if not c.hide_render]
         if 'blend' in job['outputs']:
@@ -331,9 +349,17 @@ def run(out):
         visibility('motion-camera', source_view=True); scene.camera = source
         scene.render.resolution_x = W; scene.render.resolution_y = H
         scene.render.pixel_aspect_x = 1; scene.render.pixel_aspect_y = float(ratio)
-        if {'video', 'gif'} & set(job['outputs']):
+        selected_view_frames=list(range(T)) if {'video','gif'} & set(job['outputs']) else panel_frames(job,T) if job.get('storyboard') else []
+        if selected_view_frames:
             frames_dir = destination/'frames'; frames_dir.mkdir()
-            for f in range(T):
+            for f in selected_view_frames:
                 scene.frame_set(f+1); scene.render.filepath = str(frames_dir/f'{f:06d}.png')
                 bpy.ops.render.render(write_still=True)
+        if job.get('export_elements'):
+            from .elements import export_blender_elements
+            for f in panel_frames(job,T):
+                scene.frame_set(f+1);bpy.context.view_layer.update()
+                export_blender_elements(destination/f'shot_{f:06d}'/'elements',scene,
+                    [{'id':'subject','kind':'body','modality':'motion','frames':[f],'objects':list(collections['MotionLive'].objects)}],'motion')
+        audit['camera_view_frames']=selected_view_frames
     (out/'blender_audit.json').write_text(json.dumps(audit, indent=2)+'\n')

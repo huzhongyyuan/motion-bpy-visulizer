@@ -1,0 +1,39 @@
+{
+  "demo_id": "transparent-elements-v050",
+  "render_status": "PASS",
+  "renderer_version": "0.5.0",
+  "frames": 71,
+  "fps": 20.0,
+  "body_model": "SMPL-H",
+  "prompt": "Side-track full body, cut to static medium shot, cut to opposite-side tracking; a person walks.",
+  "source_receipt_sha256": "c8c211ad9fd1aa1a153c96545464b339c1cbb8e6c02a6b23b6dd5e7f3adc1d69",
+  "media_sha256": {
+    "assets/transparent-elements-v050.png": "63d7407772750ba26e5c41fd827dc46e94d5cd8119d74ab3517e8492570c4025",
+    "assets/transparent_elements.zip": "24fefdac874c5540177bbe70314af0efc72002c5ee90ea79a230123c9b955001"
+  },
+  "scope": "Illustrative authored-camera/SMPL mesh visualization, not a learned prediction. Raw inputs and internal paths are not distributed.",
+  "rgba_elements_checked": 108,
+  "alpha_checked": true,
+  "crops_and_offsets_verified": true,
+  "storyboard_layers_recompose_exactly": true,
+  "saved_scene_replay": {
+    "camera": {
+      "mesh_max_m": 7.149122192018353e-07,
+      "pose_max": 2.3810330329609997e-07,
+      "projection_max_px": 0.000660603213586547,
+      "material_max_error": 2.9742418639067125e-08
+    },
+    "motion": {
+      "mesh_max_m": 7.149122192018353e-07,
+      "pose_max": 2.3810330329609997e-07,
+      "projection_max_px": 0.000660603213586547,
+      "material_max_error": 2.9742418639067125e-08
+    },
+    "motion-camera": {
+      "mesh_max_m": 7.149122192018353e-07,
+      "pose_max": 2.3810330329609997e-07,
+      "projection_max_px": 0.000660603213586547,
+      "material_max_error": 2.9742418639067125e-08
+    }
+  }
+}

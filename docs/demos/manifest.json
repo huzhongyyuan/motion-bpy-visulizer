@@ -1,6 +1,6 @@
 {
-  "as_of": "2026-10-29T04:42:24.421106+00:00",
-  "count": 22,
+  "as_of": "2026-10-29T06:51:21.224554+00:00",
+  "count": 28,
   "items": [
     {
       "id": "flat_camera_icon_v041-camera-0",
@@ -531,6 +531,167 @@
       "media_sha256": {
         "assets/demo_21.png": "eda4cc79fedb4999c6ef61af37c100bfbdab33bfa9107ba730d435f12f95d5d1"
       }
+    },
+    {
+      "id": "projection-v050-silhouette",
+      "title": "2D：SMPL 轮廓",
+      "description": "用真实相机内参和位姿投影网格，保留原始像素坐标。",
+      "tags": [
+        "2D 投影",
+        "Motion",
+        "视频"
+      ],
+      "version": "0.5.0",
+      "source_run": "silhouette",
+      "mode": "2d-mesh-projection",
+      "prompt": "A walking SMPL mesh projected through the following camera.",
+      "body_model": "SMPL-H",
+      "frames": 71,
+      "blend": null,
+      "image": "assets/projection_silhouette.png",
+      "video": "assets/projection_silhouette.mp4",
+      "gif": "assets/projection_silhouette.gif",
+      "media_sha256": {
+        "assets/projection_silhouette.png": "5402e37a82470a9e624212c932bacf4c70913dce91811587eeee5f68e89d4ec9",
+        "assets/projection_silhouette.mp4": "b978fc26e5ab688352c4f79b45758e44136281b70ede6baf1b80a99403806d79",
+        "assets/projection_silhouette.gif": "f43914824d40890476ae93913b35bec612ec92c0fb769e5d718a5f3297859494",
+        "assets/projection_elements.zip": "9dc55c8261ec34aad8e20956e2da09f84395384b280169d8761f10d78b74d0c7"
+      },
+      "receipt": "evidence/projection-v050-silhouette.json",
+      "bundle": "assets/projection_elements.zip"
+    },
+    {
+      "id": "projection-v050-wireframe",
+      "title": "2D：SMPL 网格线",
+      "description": "查看投影后的三角网格线；包含隐藏表面。",
+      "tags": [
+        "2D 投影",
+        "Motion",
+        "视频"
+      ],
+      "version": "0.5.0",
+      "source_run": "wireframe",
+      "mode": "2d-mesh-projection",
+      "prompt": "A walking SMPL mesh projected through the following camera.",
+      "body_model": "SMPL-H",
+      "frames": 71,
+      "blend": null,
+      "image": "assets/projection_wireframe.png",
+      "video": "assets/projection_wireframe.mp4",
+      "gif": "assets/projection_wireframe.gif",
+      "media_sha256": {
+        "assets/projection_wireframe.png": "4a6c6f9a05cf12c583c9f38d19b276c28fcccac32e3c3b70bbe6ef6d8e9211a7",
+        "assets/projection_wireframe.mp4": "bc3b19f422817528b7c79bc5669716f9885ac3b9435caef6794651ffe2fd38e4",
+        "assets/projection_wireframe.gif": "0518e8e53f697f9f1b2beb44009fa416318914645fcd8d6d5bded8c2ab66ffb3"
+      },
+      "receipt": "evidence/projection-v050-wireframe.json"
+    },
+    {
+      "id": "projection-v050-points",
+      "title": "2D：SMPL 顶点",
+      "description": "显示网格顶点投影；不是关节骨架。",
+      "tags": [
+        "2D 投影",
+        "Motion",
+        "视频"
+      ],
+      "version": "0.5.0",
+      "source_run": "points",
+      "mode": "2d-mesh-projection",
+      "prompt": "A walking SMPL mesh projected through the following camera.",
+      "body_model": "SMPL-H",
+      "frames": 71,
+      "blend": null,
+      "image": "assets/projection_points.png",
+      "video": "assets/projection_points.mp4",
+      "gif": "assets/projection_points.gif",
+      "media_sha256": {
+        "assets/projection_points.png": "b9f9af4c6fe72e3e23ffb82bd394320d52a6f5af7dcb6c23f5d3bd0b4a621362",
+        "assets/projection_points.mp4": "448bb971aae06c48a4f58d186a1d4e1d7e032c80a03d2f34844025b73cffb3f0",
+        "assets/projection_points.gif": "8796c81e5abaec8b3a09c6f4a9bf49df3c357381032f375865dfaa9a9a3adda3"
+      },
+      "receipt": "evidence/projection-v050-points.json"
+    },
+    {
+      "id": "projection-v050-fixed",
+      "title": "2D：固定相机",
+      "description": "人体继续行走，相机固定；如实呈现画框裁切。",
+      "tags": [
+        "2D 投影",
+        "Motion",
+        "视频"
+      ],
+      "version": "0.5.0",
+      "source_run": "fixed",
+      "mode": "2d-mesh-projection",
+      "prompt": "A walking SMPL mesh projected through the fixed camera.",
+      "body_model": "SMPL-H",
+      "frames": 71,
+      "blend": null,
+      "image": "assets/projection_fixed.png",
+      "video": "assets/projection_fixed.mp4",
+      "gif": "assets/projection_fixed.gif",
+      "media_sha256": {
+        "assets/projection_fixed.png": "cebe3996867072690968589332426721793631ee8944fc652498c7ef2132101b",
+        "assets/projection_fixed.mp4": "6bcfe251cf8802235f237aa188fd7bc86de61da6b511372b5c4510010ae7ba68",
+        "assets/projection_fixed.gif": "f324a3cdbdf32c51249e7bf9388424d12c53ed3a0e39faab10b598a170b71fa7"
+      },
+      "receipt": "evidence/projection-v050-fixed.json"
+    },
+    {
+      "id": "multishot-v050-storyboard",
+      "title": "多镜头：总览与实际画面",
+      "description": "左侧共享世界，右侧逐镜真实画面；同色对应、帧号、时间及 Prompt。",
+      "tags": [
+        "多镜头",
+        "联合",
+        "真实视角",
+        "配色",
+        "视频"
+      ],
+      "version": "0.5.0",
+      "source_run": "multishot_video_v050",
+      "mode": "motion-camera",
+      "prompt": "Side-track full body, cut to static medium shot, cut to opposite-side tracking; a person walks.",
+      "body_model": "SMPL-H",
+      "frames": 71,
+      "blend": null,
+      "image": "assets/multishot_storyboard.png",
+      "video": "assets/multishot_storyboard.mp4",
+      "gif": "assets/multishot_storyboard.gif",
+      "media_sha256": {
+        "assets/multishot_storyboard.png": "54222ee939672acfae68166e72427142dfad5b75fbd0202c9d3497a468752502",
+        "assets/multishot_storyboard.mp4": "560b0035271594c2611b4be736c63aa9a6acc20b167328925fe415401b1cca87",
+        "assets/multishot_storyboard.gif": "1c09e2fbb59977d6e29126f60470b297b5e09b97683b888d56262d80079da446"
+      },
+      "receipt": "evidence/multishot-v050-storyboard.json"
+    },
+    {
+      "id": "transparent-elements-v050",
+      "title": "每个元素独立透明导出",
+      "description": "108 个元素已核验：人体、两类轨迹、实体相机、台面、标签、分镜边框、箭头与文字；提供原画布和紧裁切。",
+      "tags": [
+        "透明",
+        "多镜头",
+        "联合",
+        "相机样式"
+      ],
+      "version": "0.5.0",
+      "source_run": "transparent_elements_v050",
+      "mode": "motion-camera",
+      "prompt": "Side-track full body, cut to static medium shot, cut to opposite-side tracking; a person walks.",
+      "body_model": "SMPL-H",
+      "frames": 71,
+      "blend": null,
+      "image": "assets/transparent-elements-v050.png",
+      "video": null,
+      "gif": null,
+      "media_sha256": {
+        "assets/transparent-elements-v050.png": "63d7407772750ba26e5c41fd827dc46e94d5cd8119d74ab3517e8492570c4025",
+        "assets/transparent_elements.zip": "24fefdac874c5540177bbe70314af0efc72002c5ee90ea79a230123c9b955001"
+      },
+      "receipt": "evidence/transparent-elements-v050.json",
+      "bundle": "assets/transparent_elements.zip"
     }
   ]
 }

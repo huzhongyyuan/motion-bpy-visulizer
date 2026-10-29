@@ -1,0 +1,18 @@
+{
+  "demo_id": "projection-v050-fixed",
+  "render_status": "PASS",
+  "renderer_version": "0.5.0",
+  "frames": 71,
+  "fps": 20.0,
+  "body_model": "SMPL-H",
+  "prompt": "A walking SMPL mesh projected through the fixed camera.",
+  "source_receipt_sha256": "eec0ea154535395e5d1f996d4160e87bb163d3c0444bcc3bcbd95b10632df7b9",
+  "media_sha256": {
+    "assets/projection_fixed.png": "cebe3996867072690968589332426721793631ee8944fc652498c7ef2132101b",
+    "assets/projection_fixed.mp4": "6bcfe251cf8802235f237aa188fd7bc86de61da6b511372b5c4510010ae7ba68",
+    "assets/projection_fixed.gif": "f324a3cdbdf32c51249e7bf9388424d12c53ed3a0e39faab10b598a170b71fa7"
+  },
+  "scope": "Illustrative authored-camera/SMPL mesh visualization, not a learned prediction. Raw inputs and internal paths are not distributed.",
+  "independent_uv_max_error_px": 1.3642420526593924e-12,
+  "projection_scope": "Mesh silhouette/wireframe/vertices. No self-occlusion certification."
+}

@@ -17,6 +17,8 @@ from .compose import compose_outputs
 def parser():
     p = argparse.ArgumentParser(description='motion-bpy-visulizer: calibrated motion/camera Blender visualizer')
     sub = p.add_subparsers(dest='command', required=True)
+    from .projection import add_parser
+    add_parser(sub)
     r = sub.add_parser('render', help='Render temporal montages and animation')
     r.add_argument('--input', type=Path, help='Combined NPZ; overrides separate inputs only when they are absent')
     r.add_argument('--motion', type=Path); r.add_argument('--camera', type=Path)
@@ -60,11 +62,18 @@ def parser():
     r.add_argument('--ground', choices=('checker', 'solid', 'none'), default=None, help='Default: none with transparency, checker otherwise')
     r.add_argument('--root-path-space', choices=('world', 'ground'), default='world', help='Display path only; does not change motion')
     r.add_argument('--prompt', default='', help='Caption displayed above output, without altering input')
+    r.add_argument('--shot-boundaries', help='Zero-based starts plus exclusive end, e.g. 0,24,47,71')
+    r.add_argument('--storyboard', action='store_true', help='World montage plus one actual camera-view frame per shot')
+    r.add_argument('--storyboard-frames', help='One zero-based representative frame per shot; default midpoint')
+    r.add_argument('--export-elements', action='store_true', help='Export isolated RGBA humans, cameras, paths, stage and annotations')
     return p
 
 
 def main(argv=None):
     args = parser().parse_args(argv)
+    if args.command == "project":
+        from .projection import export
+        return export(args)
     for color in (args.motion_color, args.camera_color, args.motion_start_color, args.camera_start_color, args.keyframe_color, args.ground_color, args.motion_path_color, args.camera_path_color):
         if color is None:
             continue
@@ -90,6 +99,13 @@ def main(argv=None):
         raise ValueError('outputs must be a comma-separated subset of sequence,video,gif,blend')
     if min(args.samples, args.threads, args.render_samples) < 1 or args.resolution < 64:
         raise ValueError('Positive samples/threads and resolution >=64 required')
+    if args.storyboard:
+        if args.mode not in ('all','motion-camera') or 'sequence' not in outputs:
+            raise ValueError('--storyboard needs joint/all mode and sequence output')
+        args.camera_view = True
+    if args.export_elements:
+        if 'sequence' not in outputs:raise ValueError('--export-elements requires sequence output')
+        args.transparent=True
     if args.camera_view and args.mode not in ('all', 'motion-camera'):
         raise ValueError('--camera-view requires motion-camera or all')
     blender = shutil.which(args.blender)
@@ -99,7 +115,7 @@ def main(argv=None):
         for executable in (args.ffmpeg, args.ffprobe):
             if not shutil.which(executable):
                 raise FileNotFoundError(f'Required encoder/probe not found: {executable}')
-    if args.camera_view and not ({'video', 'gif'} & set(outputs)):
+    if args.camera_view and not args.storyboard and not ({'video', 'gif'} & set(outputs)):
         raise ValueError('--camera-view currently requires video or gif output')
     sequence = load_sequence(args.motion or args.input, args.camera or args.input,
                              fps=args.fps, width=args.width, height=args.height,
@@ -110,6 +126,10 @@ def main(argv=None):
         if any(x < 0 or x >= sequence['frames'] for x in indices):
             raise ValueError('Sample/keyframe index outside input clip')
         return indices
+    from .storyboard import shot_boundaries, panel_frames
+    boundaries=shot_boundaries(args.shot_boundaries,sequence['frames'])
+    storyboard_frames=frame_list(args.storyboard_frames)
+    panel_frames({'shot_boundaries':boundaries,'storyboard_frames':storyboard_frames},sequence['frames'])
     explicit = frame_list(args.sample_frames)
     keyframes = frame_list(args.keyframes)
     args.out.mkdir(parents=True, exist_ok=False)
@@ -134,7 +154,10 @@ def main(argv=None):
            'ground_thickness': args.ground_thickness,
            'camera_style':args.camera_style,'camera_scale':args.camera_scale,
            'frustum_depth_ratio':args.frustum_depth_ratio,
-           'camera_labels':args.camera_labels,'camera_arrows':not args.no_camera_arrows}
+           'camera_labels':args.camera_labels,'camera_arrows':not args.no_camera_arrows,
+           'shot_boundaries':boundaries,'storyboard':args.storyboard,'storyboard_frames':storyboard_frames,
+           'export_elements':args.export_elements}
+    job['metadata']['source_frame_indices']=sequence['source_frames'].tolist()
     (out/'job.json').write_text(json.dumps(job, indent=2)+'\n')
     code = Path(__file__).resolve().parent
     receipt = {'started_at': datetime.now(timezone.utc).isoformat(), 'status': 'RUNNING',
@@ -147,6 +170,9 @@ def main(argv=None):
         with (out/'blender.log').open('w') as log:
             subprocess.run(command, stdout=log, stderr=subprocess.STDOUT, check=True)
         receipt['composition'] = compose_outputs(out, job, args.ffmpeg, args.ffprobe)
+        if args.export_elements:
+            from .elements import audit_and_pack
+            receipt['elements']=audit_and_pack(out)
         # Blender uses a normalized copy. Originals must still match their pre-run hashes.
         for path, expected in metadata['inputs'].items():
             if hashlib.sha256(Path(path).read_bytes()).hexdigest() != expected:

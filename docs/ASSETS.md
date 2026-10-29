@@ -1,6 +1,6 @@
 # Demo assets and attribution
 
-The gallery contains 22 presentation examples: 20 stills and six videos. Every human example uses the same reconstructed SMPL-H walking mesh. Camera-only examples contain camera glyphs and trajectories. Camera proposals are explicitly authored; these are renderer demos, not learned-model predictions or benchmark results.
+The gallery contains 28 presentation examples: 26 stills and 11 videos. Every human example uses the same reconstructed SMPL-H walking mesh. Camera-only examples contain camera glyphs and trajectories. Camera proposals are explicitly authored; these are renderer demos, not learned-model predictions or benchmark results.
 
 The underlying walking clip comes from the HumanML3D/AMASS motion ecosystem and is reconstructed with SMPL-H. We acknowledge [HumanML3D](https://github.com/EricGuo5513/HumanML3D), [AMASS](https://amass.is.tue.mpg.de/) and [SMPL-H](https://mano.is.tue.mpg.de/). No body-model files, model weights, raw source motion or mesh arrays are distributed here. Obtain source data and models from their providers under the applicable licenses.
 

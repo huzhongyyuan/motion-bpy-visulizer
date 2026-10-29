@@ -12,7 +12,7 @@ By default each modality has one configurable hue; optional palettes enable mult
 
 ## Demos
 
-[**Browse the 22-demo gallery**](https://huzhongyyuan.github.io/motion-bpy-visulizer/demos/) · [Offline gallery](docs/demos/index.html) · [Media attribution](docs/ASSETS.md)
+[**Browse the 28-demo gallery**](https://huzhongyyuan.github.io/motion-bpy-visulizer/demos/) · [Offline gallery](docs/demos/index.html) · [Media attribution](docs/ASSETS.md)
 
 All human demos use SMPL-H meshes. The gallery covers Motion / Camera / joint views, both camera appearances, time gradients, multicolour palettes, transparent PNGs, keyframes, fixed cameras and orbiting cameras. Each still includes its Prompt.
 
@@ -21,6 +21,24 @@ All human demos use SMPL-H meshes. The gallery covers Motion / Camera / joint vi
 | ![Joint SMPL montage](docs/demos/assets/demo_02.png) | ![Solid camera glyph](docs/demos/assets/demo_00.png) |
 
 ![SMPL motion animation](docs/demos/assets/demo_04.gif)
+
+## More demos
+
+![Three-shot storyboard: world view and actual camera frames](docs/demos/assets/multishot_storyboard.png)
+
+| SMPL motion | Motion + Camera |
+| --- | --- |
+| ![SMPL motion animation](docs/demos/assets/demo_04.gif) | ![Joint animation](docs/demos/assets/demo_06.gif) |
+| **Actual camera view** | **Calibrated 2D silhouette** |
+| ![Input camera view](docs/demos/assets/demo_07.gif) | ![2D mesh silhouette](docs/demos/assets/projection_silhouette.gif) |
+| **Camera trajectory** | **2D mesh wireframe** |
+| ![Camera animation](docs/demos/assets/demo_05.gif) | ![2D mesh wireframe](docs/demos/assets/projection_wireframe.gif) |
+| **Projected SMPL vertices** | **Fixed-camera projection** |
+| ![2D vertex projection](docs/demos/assets/projection_points.gif) | ![Fixed camera 2D projection](docs/demos/assets/projection_fixed.gif) |
+| **Multicolour keyframes** | **Transparent SMPL montage** |
+| ![Multicolour](docs/demos/assets/demo_11.png) | ![Transparent montage](docs/demos/assets/demo_15.png) |
+
+[2D projection usage](docs/USAGE.md#7-project-the-smpl-mesh-into-2d) · [Multishot storyboard usage](docs/USAGE.md#8-multishot-world-view--actual-shot-panels). These are mesh-based diagnostics and authored-camera render demos, not learned predictions.
 
 ## Install
 
@@ -92,6 +110,12 @@ Original tool source, documentation and procedural test fixture: [MIT](LICENSE).
 
 ## Transparent PNGs
 
+Use **`--export-elements`** for individually editable transparent PNGs: sampled SMPL poses and cameras, paths, ground, arrows, labels, storyboard panels and borders. It exports aligned canvases, tight crops with offsets, alpha checks, and a downloadable ZIP. [Element extraction](docs/USAGE.md#9-extract-transparent-editing-elements).
+
+![Individually editable RGBA elements](docs/demos/assets/transparent-elements-v050.png)
+
+[Download transparent 3D/storyboard elements](docs/demos/assets/transparent_elements.zip) · [Download 2D subject/box elements](docs/demos/assets/projection_elements.zip).
+
 Use `--transparent` for RGBA PNGs (including annotated PNGs). It defaults to `--ground none`; choose `--ground checker` explicitly if a visible floor is desired. `temporal_raw.png` has no text, `temporal.png` includes labels. Animated PNG frames retain alpha. MP4 and GIF previews are explicitly flattened onto white; they are not transparent video formats.
 
 `--root-path-space ground` projects only the displayed root path onto the presentation ground plane. It never modifies imported mesh, joints, root motion, or cameras. Default `world` retains true root height.
@@ -126,4 +150,4 @@ Exactly repeated montage poses are shown once, with emphasized keyframes taking 
 
 ## Naming compatibility
 
-The public name, repository, Python distribution and main CLI are `motion-bpy-visulizer` (spelled as shown). The existing `motionmontage-viz` command remains an alias; the Python import namespace `motionmontage_visualizer` is retained for compatibility. v0.4.3 is a naming/documentation release; the demo renders retain their original version records.
+The public name, repository, Python distribution and main CLI are `motion-bpy-visulizer` (spelled as shown). The existing `motionmontage-viz` command remains an alias; the Python import namespace `motionmontage_visualizer` is retained for compatibility. The demo renders retain their original version records. v0.5.0 adds 2D mesh projection and shot-aware storyboards.
