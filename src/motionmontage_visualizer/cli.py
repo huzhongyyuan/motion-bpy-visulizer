@@ -15,7 +15,7 @@ from .compose import compose_outputs
 
 
 def parser():
-    p = argparse.ArgumentParser(description='MotionMontage: calibrated motion/camera Blender visualizer')
+    p = argparse.ArgumentParser(description='motion-bpy-visulizer: calibrated motion/camera Blender visualizer')
     sub = p.add_subparsers(dest='command', required=True)
     r = sub.add_parser('render', help='Render temporal montages and animation')
     r.add_argument('--input', type=Path, help='Combined NPZ; overrides separate inputs only when they are absent')

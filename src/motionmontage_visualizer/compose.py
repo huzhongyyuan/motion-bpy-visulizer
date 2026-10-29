@@ -120,8 +120,8 @@ def compose_outputs(out, job, ffmpeg, ffprobe):
             media.append(f'<a href="{mode}/scene.blend">Editable Blender scene</a>')
         sections.append(f'<section><h2>{LABELS[mode]}</h2>'+''.join(media)+'</section>')
     text = f'''<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>MotionMontage Visualizer</title><style>body{{max-width:1320px;margin:40px auto;padding:0 24px;font:16px/1.6 system-ui;color:#172738;background:#f4f7f9}}h1{{font-size:34px}}main{{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px}}section{{background:white;border-radius:12px;padding:20px}}img,video{{width:100%;height:auto;display:block;margin:12px 0}}a{{display:inline-block;margin-right:18px;color:#166a89}}code{{background:#e4edf0;padding:3px}}p{{max-width:980px}}</style>
-<h1>MotionMontage Visualizer</h1><p>{html.escape(job['prompt'])}</p>
+<title>motion-bpy-visulizer</title><style>body{{max-width:1320px;margin:40px auto;padding:0 24px;font:16px/1.6 system-ui;color:#172738;background:#f4f7f9}}h1{{font-size:34px}}main{{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px}}section{{background:white;border-radius:12px;padding:20px}}img,video{{width:100%;height:auto;display:block;margin:12px 0}}a{{display:inline-block;margin-right:18px;color:#166a89}}code{{background:#e4edf0;padding:3px}}p{{max-width:980px}}</style>
+<h1>motion-bpy-visulizer</h1><p>{html.escape(job['prompt'])}</p>
 <p>Three modes, one shared clock. Motion and Camera use separate colour styles tied to clip time.
 Gradient direction: {html.escape(job.get('time_direction', 'forward'))}. World view uses a fixed presentation observer. Input Camera view uses the supplied trajectory and intrinsics without adding tracking.</p>
 <p>{T} frames · {fps:g} fps · duration {T/fps:.3f} s · last sample {(T-1)/fps:.3f} s</p>

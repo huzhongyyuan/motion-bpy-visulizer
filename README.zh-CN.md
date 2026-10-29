@@ -1,4 +1,4 @@
-# MotionMontage Visualizer
+# motion-bpy-visulizer
 
 同一套 Blender 工具，支持 **单独 Motion、单独 Camera、Motion + Camera 联合展示**。
 
@@ -10,7 +10,7 @@
 
 ## Demo
 
-[在线查看全部 Demo](https://huzhongyyuan.github.io/motionmontage-visualizer/demos/) · [离线总览](docs/demos/index.html)
+[在线查看全部 Demo](https://huzhongyyuan.github.io/motion-bpy-visulizer/demos/) · [离线总览](docs/demos/index.html)
 
 22 个示例、20 张时序图、6 段视频；人体均使用 SMPL-H 网格。两种相机外观、透明背景、时序渐变、多色、关键帧及固定/环绕机位都有示例。[媒体来源与许可](docs/ASSETS.md)。
 
@@ -19,12 +19,12 @@
 安装 Python 依赖，并准备 Blender 与 FFmpeg：
 
 ```bash
-git clone https://github.com/huzhongyyuan/motionmontage-visualizer.git
-cd motionmontage-visualizer
+git clone https://github.com/huzhongyyuan/motion-bpy-visulizer.git
+cd motion-bpy-visulizer
 python -m venv .venv
 source .venv/bin/activate
 python -m pip install -e .
-motionmontage-viz render --motion /你的路径/smpl_world_mesh.npz \
+motion-bpy-visulizer render --motion /你的路径/smpl_world_mesh.npz \
   --camera /你的路径/camera.npz --mode all \
   --blender /你的路径/blender --out outputs/demo --camera-view \
   --motion-color '#168fac' --camera-color '#d77422'
@@ -41,7 +41,7 @@ motionmontage-viz render --motion /你的路径/smpl_world_mesh.npz \
 ## 透明图与地面轨迹
 
 ```bash
-motionmontage-viz render --input combined.npz --mode all \
+motion-bpy-visulizer render --input combined.npz --mode all \
   --blender /你的路径/blender --out outputs/transparent \
   --transparent --root-path-space ground --outputs sequence,blend
 ```
@@ -70,7 +70,7 @@ motionmontage-viz render --input combined.npz --mode all \
 参考图风格示例（输入至少71帧）：
 
 ```bash
-motionmontage-viz render --input combined.npz --mode all \
+motion-bpy-visulizer render --input combined.npz --mode all \
   --blender /你的路径/blender --out outputs/reference \
   --sample-frames 0,10,20,30,40,50,60,70 --keyframes 35 \
   --motion-color '#168fac' --lighten 0.8 \
@@ -92,7 +92,7 @@ motionmontage-viz render --input combined.npz --mode all \
 参考地板使用 `--ground solid --ground-color '#969696' --ground-padding .22 --ground-thickness .02`：矩形台面按整段运动的水平主轴对齐，尺寸包住原始人体，并保留每边22厘米余量；顶面不变，厚度向下延伸。`--motion-path-color '#ffffff' --root-path-space ground` 显示白色地面root轨迹。不会旋转、缩放或移动人体来适应地板。
 
 ```bash
-motionmontage-viz render --input combined.npz --mode all \
+motion-bpy-visulizer render --input combined.npz --mode all \
   --blender /你的路径/blender --out outputs/multicolour \
   --motion-palette '#168fac,#c58342,#7955aa' \
   --camera-palette '#df8426,#448c68' --palette-mode segments \
@@ -114,3 +114,7 @@ motionmontage-viz render --input combined.npz --mode all \
 [离线 Demo 总览](docs/demos/index.html) 涵盖三类模态、两种相机外观、时序配色、关键帧、透明背景、固定机位和环绕机位。每张时序图写英文 Prompt，网页提供中文说明和对应 Prompt。[逐例文案](docs/DEMO_COPY.zh-CN.md)。
 
 时序图中完全相同的姿态只展示一次，优先保留强调关键帧；原始帧和动画不变。机位中心完全相同的时间标签合并成时间范围，同一机位的不同朝向或内参仍分别展示。
+
+## 名称兼容
+
+对外名称、仓库、安装包和主命令统一为 `motion-bpy-visulizer`，拼写按此名称保留。旧命令 `motionmontage-viz` 仍可使用；Python 导入命名空间 `motionmontage_visualizer` 保持兼容。v0.4.3 只更新命名与文档，Demo 保留原来的渲染版本。

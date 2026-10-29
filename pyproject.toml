@@ -3,8 +3,8 @@ requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "motionmontage-visualizer"
-version = "0.4.2"
+name = "motion-bpy-visulizer"
+version = "0.4.3"
 description = "Calibrated Blender visualization of motion, cameras, and their shared timeline"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -12,6 +12,7 @@ license = {text = "MIT"}
 dependencies = ["numpy>=1.23", "Pillow>=10"]
 
 [project.scripts]
+motion-bpy-visulizer = "motionmontage_visualizer.cli:main"
 motionmontage-viz = "motionmontage_visualizer.cli:main"
 
 [tool.setuptools.packages.find]

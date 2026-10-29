@@ -1,4 +1,4 @@
-# MotionMontage Visualizer
+# motion-bpy-visulizer
 
 A Blender visualizer for **Motion**, **Camera**, and **Motion + Camera** on one shared timeline.
 
@@ -12,7 +12,7 @@ By default each modality has one configurable hue; optional palettes enable mult
 
 ## Demos
 
-[**Browse the 22-demo gallery**](https://huzhongyyuan.github.io/motionmontage-visualizer/demos/) · [Offline gallery](docs/demos/index.html) · [Media attribution](docs/ASSETS.md)
+[**Browse the 22-demo gallery**](https://huzhongyyuan.github.io/motion-bpy-visulizer/demos/) · [Offline gallery](docs/demos/index.html) · [Media attribution](docs/ASSETS.md)
 
 All human demos use SMPL-H meshes. The gallery covers Motion / Camera / joint views, both camera appearances, time gradients, multicolour palettes, transparent PNGs, keyframes, fixed cameras and orbiting cameras. Each still includes its Prompt.
 
@@ -28,8 +28,8 @@ Python 3.10+, NumPy, Pillow; **Blender 3.6 LTS or 4.x**; FFmpeg and ffprobe for 
 Blender and FFmpeg are separate applications and are not bundled.
 
 ```bash
-git clone https://github.com/huzhongyyuan/motionmontage-visualizer.git
-cd motionmontage-visualizer
+git clone https://github.com/huzhongyyuan/motion-bpy-visulizer.git
+cd motion-bpy-visulizer
 python -m venv .venv
 source .venv/bin/activate
 python -m pip install -e .
@@ -38,7 +38,7 @@ python -m pip install -e .
 Render your already reconstructed SMPL-family **world-space mesh** and camera:
 
 ```bash
-motionmontage-viz render --motion smpl_world_mesh.npz --camera camera.npz \
+motion-bpy-visulizer render --motion smpl_world_mesh.npz --camera camera.npz \
   --mode all --blender /path/to/blender --out outputs/demo --camera-view \
   --motion-color '#168fac' --camera-color '#d77422' \
   --prompt 'A person walks while the camera follows.'
@@ -48,13 +48,13 @@ Open `outputs/demo/index.html`. Each selected world-view mode produces `temporal
 
 ```bash
 # Motion only: no camera input needed.
-motionmontage-viz render --motion smpl_world_mesh.npz --mode motion \
+motion-bpy-visulizer render --motion smpl_world_mesh.npz --mode motion \
   --blender /path/to/blender --out outputs/motion
 # Camera only: no human input needed.
-motionmontage-viz render --camera camera.npz --mode camera \
+motion-bpy-visulizer render --camera camera.npz --mode camera \
   --blender /path/to/blender --out outputs/camera --camera-style wire
 # Joint montage only, with a solid camera icon.
-motionmontage-viz render --motion smpl_world_mesh.npz --camera camera.npz \
+motion-bpy-visulizer render --motion smpl_world_mesh.npz --camera camera.npz \
   --mode motion-camera --blender /path/to/blender --out outputs/joint \
   --outputs sequence,blend --camera-style icon
 ```
@@ -123,3 +123,7 @@ The delivered human demos use the existing reconstructed SMPL-H meshes. Generate
 The [curated offline gallery](docs/demos/index.html) contains three modes, two camera styles, time colours, keyframes, transparency, fixed cameras and orbiting cameras. Each normal render also creates its own `index.html`. Every still includes an English Prompt; each gallery entry includes Chinese copy and the matching Prompt. [Demo copy](docs/DEMO_COPY.zh-CN.md).
 
 Exactly repeated montage poses are shown once, with emphasized keyframes taking priority. Time labels at identical camera centres become one time range. Source frames and animation remain intact; distinct orientations or intrinsics at the same centre remain separate glyphs.
+
+## Naming compatibility
+
+The public name, repository, Python distribution and main CLI are `motion-bpy-visulizer` (spelled as shown). The existing `motionmontage-viz` command remains an alias; the Python import namespace `motionmontage_visualizer` is retained for compatibility. v0.4.3 is a naming/documentation release; the demo renders retain their original version records.

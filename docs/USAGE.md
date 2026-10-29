@@ -25,13 +25,13 @@ Both files must share the same world coordinate frame, units, frame count, fps a
 
 ```bash
 # Human mesh only.
-motionmontage-viz render --motion smpl_world_mesh.npz --mode motion \
+motion-bpy-visulizer render --motion smpl_world_mesh.npz --mode motion \
   --blender /path/to/blender --out outputs/motion
 # Camera trajectory only.
-motionmontage-viz render --camera camera.npz --mode camera \
+motion-bpy-visulizer render --camera camera.npz --mode camera \
   --blender /path/to/blender --out outputs/camera
 # Both in the same world, plus the actual input-camera view.
-motionmontage-viz render --motion smpl_world_mesh.npz --camera camera.npz \
+motion-bpy-visulizer render --motion smpl_world_mesh.npz --camera camera.npz \
   --mode all --camera-view --blender /path/to/blender --out outputs/combined \
   --prompt 'A person walks while the camera follows.'
 ```

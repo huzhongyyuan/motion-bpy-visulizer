@@ -1,4 +1,4 @@
-# MotionMontage Demo 文案
+# motion-bpy-visulizer Demo 文案
 
 本次公开预览只使用之前已验证的 **SMPL-H 人体网格**（SMPL 系列）。不使用骨架、胶囊体或程序小人代替人体；工程诊断样例不进入这份 Demo 总览。人体网格、世界 root 与原始时间保持不变，相机方案与显示配色单独配置。
 

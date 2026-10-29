@@ -1,2 +1,2 @@
-"""MotionMontage Visualizer. Blender is invoked externally, not imported here."""
-__version__ = '0.4.2'
+"""motion-bpy-visulizer. Blender is invoked externally, not imported here."""
+__version__ = '0.4.3'
