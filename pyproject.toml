@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "motion-bpy-visulizer"
-version = "0.5.0"
+version = "0.5.1"
 description = "Calibrated Blender visualization of motion, cameras, and their shared timeline"
 readme = "README.md"
 requires-python = ">=3.10"

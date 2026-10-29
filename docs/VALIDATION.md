@@ -1,6 +1,6 @@
-# Validation — v0.5.0
+# Validation — v0.5.1
 
-- 38 Python unit tests pass, including independent homogeneous projection, near/image clipping, shot partitions, cut-separated paths, per-shot colours, source-pixel UV export, transparent layers, crop restoration and exact 2D layer recomposition. Numeric shot helpers also import without Pillow in Blender.
+- 39 Python unit tests pass, including independent homogeneous projection, near/image clipping, shot partitions, cut-separated paths, per-shot colours, source-pixel UV export, transparent layers, crop restoration, metadata removal without pixel changes and exact 2D layer recomposition. Numeric shot helpers also import without Pillow in Blender.
 - Four 71-frame SMPL-H 2D examples at 20 fps pass full MP4 decode/frame-count checks. Independent world-to-camera projection agrees within 1.4e−12 source pixels; silhouette, wireframe, points and a fixed-camera case are included.
 - The three-shot example renders all 71 frames at 20 fps and keeps motion/K/clock unchanged. Actual shot panels are bound to clip frames 13, 36 and 59 (zero-based 12, 35, 58). Camera paths do not join across cuts. Its saved scene passed per-frame mesh/pose/K/material replay.
 - A native SMPL-H `--mode all --export-elements` render passed: **108 independent RGBA elements** have both a transparent background and visible content. Every tight crop and offset was verified, and storyboard layers reconstruct the delivered transparent image exactly. Reopened Motion, Camera and joint scenes pass replay checks. This checks extraction, not physical equivalence of independently lit objects when recomposited.

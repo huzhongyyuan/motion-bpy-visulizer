@@ -57,15 +57,19 @@ def audit_and_pack(out):
         data=json.loads(manifest.read_text());folder=manifest.parent;crop=folder/'cropped';crop.mkdir(exist_ok=True)
         for item in data['elements']:
             path=folder/item['file']
-            with Image.open(path) as image:
-                if image.mode!='RGBA':raise RuntimeError(f'Element has no alpha channel: {path.name}')
-                alpha=image.getchannel('A');bbox=alpha.getbbox();extrema=alpha.getextrema()
-                if bbox:
-                    image.crop(bbox).save(crop/path.name)
-                item.update(width=image.width,height=image.height,alpha_min=extrema[0],alpha_max=extrema[1],
-                            content_bbox_xyxy=list(bbox) if bbox else None,crop_offset_xy=list(bbox[:2]) if bbox else None,
-                            cropped_file='cropped/'+path.name if bbox else None,status='VISIBLE' if bbox else 'EMPTY_IN_THIS_VIEW',
-                            sha256=hashlib.sha256(path.read_bytes()).hexdigest())
+            with Image.open(path) as source:
+                if source.mode!='RGBA':raise RuntimeError(f'Element has no alpha channel: {path.name}')
+                image=source.copy()
+            # Blender's PNG text can include the originating .blend's full path.
+            # Pixel-preserving re-encoding keeps private render metadata out of exports.
+            image.info.clear();image.save(path)
+            alpha=image.getchannel('A');bbox=alpha.getbbox();extrema=alpha.getextrema()
+            if bbox:
+                image.crop(bbox).save(crop/path.name)
+            item.update(width=image.width,height=image.height,alpha_min=extrema[0],alpha_max=extrema[1],
+                        content_bbox_xyxy=list(bbox) if bbox else None,crop_offset_xy=list(bbox[:2]) if bbox else None,
+                        cropped_file='cropped/'+path.name if bbox else None,status='VISIBLE' if bbox else 'EMPTY_IN_THIS_VIEW',
+                        sha256=hashlib.sha256(path.read_bytes()).hexdigest())
         manifest.write_text(json.dumps(data,indent=2)+'\n');records.append({'manifest':str(manifest.relative_to(out)),'count':len(data['elements'])})
     # No source geometry, .blend, commands or private paths in the editable-figure archive.
     target=out/'transparent_elements.zip'
@@ -73,4 +77,4 @@ def audit_and_pack(out):
         for manifest in sorted(out.glob('**/elements/manifest.json')):
             for path in sorted(manifest.parent.rglob('*')):
                 if path.is_file():archive.write(path,str(path.relative_to(out)))
-    return {'manifests':records,'archive':target.name,'sha256':hashlib.sha256(target.read_bytes()).hexdigest()}
+    return {'manifests':records,'archive':target.name,'sha256':hashlib.sha256(target.read_bytes()).hexdigest(),'png_metadata':'stripped; RGBA pixels preserved'}

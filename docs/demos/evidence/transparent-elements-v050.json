@@ -9,7 +9,7 @@
   "source_receipt_sha256": "c8c211ad9fd1aa1a153c96545464b339c1cbb8e6c02a6b23b6dd5e7f3adc1d69",
   "media_sha256": {
     "assets/transparent-elements-v050.png": "63d7407772750ba26e5c41fd827dc46e94d5cd8119d74ab3517e8492570c4025",
-    "assets/transparent_elements.zip": "24fefdac874c5540177bbe70314af0efc72002c5ee90ea79a230123c9b955001"
+    "assets/transparent_elements.zip": "fc67aa304cb342b5d26e96716aad1654e6752efbceb5b7cf1ea96eee7f0f405f"
   },
   "scope": "Illustrative authored-camera/SMPL mesh visualization, not a learned prediction. Raw inputs and internal paths are not distributed.",
   "rgba_elements_checked": 108,
@@ -35,5 +35,11 @@
       "projection_max_px": 0.000660603213586547,
       "material_max_error": 2.9742418639067125e-08
     }
+  },
+  "public_export": {
+    "pixel_equivalence_verified": true,
+    "png_metadata_stripped": true,
+    "source_archive_sha256": "24fefdac874c5540177bbe70314af0efc72002c5ee90ea79a230123c9b955001",
+    "pngs_checked": 216
   }
 }

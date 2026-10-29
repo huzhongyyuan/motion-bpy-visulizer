@@ -36,3 +36,15 @@ class Elements(unittest.TestCase):
     def test_rgb_element_cannot_claim_transparency(self):
         with tempfile.TemporaryDirectory() as tmp:
             with self.assertRaises(ValueError):save_layers(Path(tmp)/'elements',[('bad',Image.new('RGB',(10,10)))])
+
+    def test_render_metadata_is_removed_without_changing_pixels(self):
+        from PIL.PngImagePlugin import PngInfo
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);image=Image.new('RGBA',(16,16),(0,0,0,0))
+            ImageDraw.Draw(image).ellipse((4,4,12,12),fill='#168fac')
+            save_layers(root/'view/elements',[('body',image)])
+            info=PngInfo();info.add_text('File','/private/example/source.blend')
+            image.save(root/'view/elements/body.png',pnginfo=info)
+            audit_and_pack(root)
+            with Image.open(root/'view/elements/body.png') as result:
+                self.assertNotIn('File',result.info);self.assertEqual(result.tobytes(),image.tobytes())

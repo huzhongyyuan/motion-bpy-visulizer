@@ -11,9 +11,15 @@
     "assets/projection_silhouette.png": "5402e37a82470a9e624212c932bacf4c70913dce91811587eeee5f68e89d4ec9",
     "assets/projection_silhouette.mp4": "b978fc26e5ab688352c4f79b45758e44136281b70ede6baf1b80a99403806d79",
     "assets/projection_silhouette.gif": "f43914824d40890476ae93913b35bec612ec92c0fb769e5d718a5f3297859494",
-    "assets/projection_elements.zip": "9dc55c8261ec34aad8e20956e2da09f84395384b280169d8761f10d78b74d0c7"
+    "assets/projection_elements.zip": "932851fa0f1a2d9c44c9fe2b2005fd6be590ee613e0ac411ee4eb0821a16ba2c"
   },
   "scope": "Illustrative authored-camera/SMPL mesh visualization, not a learned prediction. Raw inputs and internal paths are not distributed.",
   "independent_uv_max_error_px": 5.684341886080801e-13,
-  "projection_scope": "Mesh silhouette/wireframe/vertices. No self-occlusion certification."
+  "projection_scope": "Mesh silhouette/wireframe/vertices. No self-occlusion certification.",
+  "public_export": {
+    "pixel_equivalence_verified": true,
+    "png_metadata_stripped": true,
+    "source_archive_sha256": "9dc55c8261ec34aad8e20956e2da09f84395384b280169d8761f10d78b74d0c7",
+    "pngs_checked": 24
+  }
 }
