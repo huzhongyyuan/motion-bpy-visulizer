@@ -1,0 +1,536 @@
+{
+  "as_of": "2026-10-29T04:42:24.421106+00:00",
+  "count": 22,
+  "items": [
+    {
+      "id": "flat_camera_icon_v041-camera-0",
+      "title": "实体相机 + 扁平线框",
+      "description": "机身、镜头、方向箭头与时间标签。",
+      "tags": [
+        "Camera",
+        "相机样式",
+        "配色"
+      ],
+      "image": "assets/demo_00.png",
+      "video": null,
+      "gif": null,
+      "blend": null,
+      "receipt": "evidence/demo_00.json",
+      "version": "0.4.1",
+      "source_run": "flat_camera_icon_v041",
+      "mode": "camera",
+      "prompt": "Camera: The camera follows a walking person with a fixed orientation.",
+      "body_model": null,
+      "frames": 71,
+      "media_sha256": {
+        "assets/demo_00.png": "9e9643527592d2cd689a4a97ab5dcff799b69378daefff93e2b18f196b31235f"
+      }
+    },
+    {
+      "id": "flat_frustum_v041-camera-1",
+      "title": "纯线框相机",
+      "description": "保留简洁锥形线框，纵深压缩到55%。",
+      "tags": [
+        "Camera",
+        "相机样式"
+      ],
+      "image": "assets/demo_01.png",
+      "video": null,
+      "gif": null,
+      "blend": null,
+      "receipt": "evidence/demo_01.json",
+      "version": "0.4.1",
+      "source_run": "flat_frustum_v041",
+      "mode": "camera",
+      "prompt": "Camera: The camera follows a walking person with a fixed orientation.",
+      "body_model": null,
+      "frames": 71,
+      "media_sha256": {
+        "assets/demo_01.png": "0763a4621c1d1da49f2ae7c0a988a5a04cef36614b2c11374389ced4420dc48f"
+      }
+    },
+    {
+      "id": "flat_camera_icon_v041-motion-camera-2",
+      "title": "人体与相机一起看",
+      "description": "同一个世界坐标，分别显示人体和相机轨迹。",
+      "tags": [
+        "联合",
+        "配色",
+        "相机样式"
+      ],
+      "image": "assets/demo_02.png",
+      "video": null,
+      "gif": null,
+      "blend": null,
+      "receipt": "evidence/demo_02.json",
+      "version": "0.4.1",
+      "source_run": "flat_camera_icon_v041",
+      "mode": "motion-camera",
+      "prompt": "Motion: A person walks. Camera: The camera follows the person with a fixed orientation.",
+      "body_model": "SMPL-H",
+      "frames": 71,
+      "media_sha256": {
+        "assets/demo_02.png": "8c7e55f8e95483bc61681ea6f81c107fdaf18e020be7ae3c37df7df8c334f49d"
+      }
+    },
+    {
+      "id": "flat_camera_icon_v041-motion-3",
+      "title": "只看人体",
+      "description": "隐藏相机，保留人体时序与白色根节点轨迹。",
+      "tags": [
+        "Motion",
+        "配色"
+      ],
+      "image": "assets/demo_03.png",
+      "video": null,
+      "gif": null,
+      "blend": null,
+      "receipt": "evidence/demo_03.json",
+      "version": "0.4.1",
+      "source_run": "flat_camera_icon_v041",
+      "mode": "motion",
+      "prompt": "Motion: A person walks.",
+      "body_model": "SMPL-H",
+      "frames": 71,
+      "media_sha256": {
+        "assets/demo_03.png": "5acfdf8ca37194657e39e58ff6ecd9d3c4a646df63cf43d03de13ff7dc562925"
+      }
+    },
+    {
+      "id": "native_following-motion-4",
+      "title": "人体完整动画",
+      "description": "71帧步行，展示真实时间推进。",
+      "tags": [
+        "Motion",
+        "视频"
+      ],
+      "image": "assets/demo_04.png",
+      "video": "assets/demo_04.mp4",
+      "gif": "assets/demo_04.gif",
+      "blend": null,
+      "receipt": "evidence/demo_04.json",
+      "version": "0.1.0",
+      "source_run": "native_following",
+      "mode": "motion",
+      "prompt": "Motion: A person walks.",
+      "body_model": "SMPL-H",
+      "frames": 71,
+      "media_sha256": {
+        "assets/demo_04.png": "3ceee06337396adc2fec3497044f705abfe8af2cb82ba95ca4c31e47609edda5",
+        "assets/demo_04.mp4": "1475f228771356b5d931408222b60c5ced1fa64494049f9e149c571cef7e8f5f",
+        "assets/demo_04.gif": "9b1eeec5ccb08d6947bdb45853b52ef85d0a6dc7e3ac9c73d526398a04b3792b"
+      }
+    },
+    {
+      "id": "native_following-camera-5",
+      "title": "相机完整动画",
+      "description": "原有线框风格的相机轨迹动画。",
+      "tags": [
+        "Camera",
+        "视频",
+        "相机样式"
+      ],
+      "image": "assets/demo_05.png",
+      "video": "assets/demo_05.mp4",
+      "gif": "assets/demo_05.gif",
+      "blend": null,
+      "receipt": "evidence/demo_05.json",
+      "version": "0.1.0",
+      "source_run": "native_following",
+      "mode": "camera",
+      "prompt": "Camera: The camera follows a walking person with a fixed orientation.",
+      "body_model": null,
+      "frames": 71,
+      "media_sha256": {
+        "assets/demo_05.png": "bcdd8c598d301d480f4d0f973fab6124a6c43d7640630803fee29fbe54edaae9",
+        "assets/demo_05.mp4": "9e996dfec35924f758bbe1c81bd86ffc4e9d2e14298e461afa6598be46ecd43d",
+        "assets/demo_05.gif": "81a86c152c979b8f2f3e1959c355047ef3a1a1949d9d8c2bb075313c1a93213c"
+      }
+    },
+    {
+      "id": "native_following-motion-camera-6",
+      "title": "联合完整动画",
+      "description": "人体和相机以同一时间轴播放。",
+      "tags": [
+        "联合",
+        "视频"
+      ],
+      "image": "assets/demo_06.png",
+      "video": "assets/demo_06.mp4",
+      "gif": "assets/demo_06.gif",
+      "blend": null,
+      "receipt": "evidence/demo_06.json",
+      "version": "0.1.0",
+      "source_run": "native_following",
+      "mode": "motion-camera",
+      "prompt": "Motion: A person walks. Camera: The camera follows the person with a fixed orientation.",
+      "body_model": "SMPL-H",
+      "frames": 71,
+      "media_sha256": {
+        "assets/demo_06.png": "f0279c8dc3e05e7077935ed95f6255621280ba708513983f12c56049fc7f780f",
+        "assets/demo_06.mp4": "787f2e093137986375b63454346b4f6d86a6664c9df90477dea13fceb36db287",
+        "assets/demo_06.gif": "9d5d0a8cad7af37da52c70053148e23b3efe731bc81da654aa045d8670c68f23"
+      }
+    },
+    {
+      "id": "native_following-camera-view-7",
+      "title": "实际相机看到什么",
+      "description": "直接使用输入相机位姿和内参，不是世界观察视角。",
+      "tags": [
+        "真实视角",
+        "视频"
+      ],
+      "image": null,
+      "video": "assets/demo_07.mp4",
+      "gif": "assets/demo_07.gif",
+      "blend": null,
+      "receipt": "evidence/demo_07.json",
+      "version": "0.1.0",
+      "source_run": "native_following",
+      "mode": "camera-view",
+      "prompt": "Motion: A person walks. Camera: The camera follows the person with a fixed orientation.",
+      "body_model": "SMPL-H",
+      "frames": 71,
+      "media_sha256": {
+        "assets/demo_07.mp4": "be979e9675f292cf58325a4da50d5c5c6b09f1beb0eab5a37e3afaa4feadd4dc",
+        "assets/demo_07.gif": "3685ef37e6aed6912549d6b73b497079a1d3ded73bb2dc301e39299bbf67e78f"
+      }
+    },
+    {
+      "id": "native_transparent-motion-8",
+      "title": "人体透明图",
+      "description": "原始RGBA PNG；棋盘格是网页衬底，不会写入图片。",
+      "tags": [
+        "Motion",
+        "透明"
+      ],
+      "image": "assets/demo_08.png",
+      "video": null,
+      "gif": null,
+      "blend": null,
+      "receipt": "evidence/demo_08.json",
+      "version": "0.1.1",
+      "source_run": "native_transparent",
+      "mode": "motion",
+      "prompt": "Motion: A person walks.",
+      "body_model": "SMPL-H",
+      "frames": 71,
+      "media_sha256": {
+        "assets/demo_08.png": "fad8732d02a3ed22de052e0cae58d662d50263fc8ce2f64e05149cc8f1077155"
+      }
+    },
+    {
+      "id": "native_transparent-camera-9",
+      "title": "相机透明图",
+      "description": "原始RGBA PNG；棋盘格是网页衬底，不会写入图片。",
+      "tags": [
+        "Camera",
+        "透明"
+      ],
+      "image": "assets/demo_09.png",
+      "video": null,
+      "gif": null,
+      "blend": null,
+      "receipt": "evidence/demo_09.json",
+      "version": "0.1.1",
+      "source_run": "native_transparent",
+      "mode": "camera",
+      "prompt": "Camera: The camera follows a walking person with a fixed orientation.",
+      "body_model": null,
+      "frames": 71,
+      "media_sha256": {
+        "assets/demo_09.png": "24db727b6d4f33e4c1b1141cfae64f520de1c0d7c888b26e580d5fa5f52593be"
+      }
+    },
+    {
+      "id": "native_transparent-motion-camera-10",
+      "title": "联合透明图",
+      "description": "原始RGBA PNG；棋盘格是网页衬底，不会写入图片。",
+      "tags": [
+        "联合",
+        "透明"
+      ],
+      "image": "assets/demo_10.png",
+      "video": null,
+      "gif": null,
+      "blend": null,
+      "receipt": "evidence/demo_10.json",
+      "version": "0.1.1",
+      "source_run": "native_transparent",
+      "mode": "motion-camera",
+      "prompt": "Motion: A person walks. Camera: The camera follows the person with a fixed orientation.",
+      "body_model": "SMPL-H",
+      "frames": 71,
+      "media_sha256": {
+        "assets/demo_10.png": "69d77014fd109cbc35e8afa76069368074cb96e3a8504e1681429687f2fff888"
+      }
+    },
+    {
+      "id": "multi_palette_stage-motion-11",
+      "title": "分段多色 + 关键帧",
+      "description": "蓝、金、紫按时间分段，灰色强调关键帧。",
+      "tags": [
+        "Motion",
+        "配色",
+        "关键帧"
+      ],
+      "image": "assets/demo_11.png",
+      "video": null,
+      "gif": null,
+      "blend": null,
+      "receipt": "evidence/demo_11.json",
+      "version": "0.3.0",
+      "source_run": "multi_palette_stage",
+      "mode": "motion",
+      "prompt": "Motion: A person walks.",
+      "body_model": "SMPL-H",
+      "frames": 71,
+      "media_sha256": {
+        "assets/demo_11.png": "0dc585d348101c6db4a0fd0fbded181739d5ed1531e0f1357601ad99d838f528"
+      }
+    },
+    {
+      "id": "multi_palette_stage-motion-camera-12",
+      "title": "多色联合时序",
+      "description": "人体和相机使用各自独立的调色板。",
+      "tags": [
+        "联合",
+        "配色"
+      ],
+      "image": "assets/demo_12.png",
+      "video": null,
+      "gif": null,
+      "blend": null,
+      "receipt": "evidence/demo_12.json",
+      "version": "0.3.0",
+      "source_run": "multi_palette_stage",
+      "mode": "motion-camera",
+      "prompt": "Motion: A person walks. Camera: The camera follows the person with a fixed orientation.",
+      "body_model": "SMPL-H",
+      "frames": 71,
+      "media_sha256": {
+        "assets/demo_12.png": "97d9d9a832421cd3e01d53b16f8a2f634a92f1599c5d23c6e3112703d26d54d2"
+      }
+    },
+    {
+      "id": "time_style_reference-motion-13",
+      "title": "薄灰台面与白色路径",
+      "description": "SMPL人体按时间由浅到深，灰色强调关键姿态。",
+      "tags": [
+        "Motion",
+        "关键帧"
+      ],
+      "image": "assets/demo_13.png",
+      "video": null,
+      "gif": null,
+      "blend": null,
+      "receipt": "evidence/demo_13.json",
+      "version": "0.2.0",
+      "source_run": "time_style_reference",
+      "mode": "motion",
+      "prompt": "Motion: A person walks.",
+      "body_model": "SMPL-H",
+      "frames": 71,
+      "media_sha256": {
+        "assets/demo_13.png": "aeec66bac18525e78695fcc077d126d3e6ff19f0ca65526f0f810ef7bf8f07f2"
+      }
+    },
+    {
+      "id": "camera_design_v4-camera-14",
+      "title": "实体相机的原比例线框",
+      "description": "未压缩纵深的外观，可与55%纵深对比。",
+      "tags": [
+        "Camera",
+        "相机样式",
+        "配色"
+      ],
+      "image": "assets/demo_14.png",
+      "video": null,
+      "gif": null,
+      "blend": null,
+      "receipt": "evidence/demo_14.json",
+      "version": "0.4.0",
+      "source_run": "camera_design_v4",
+      "mode": "camera",
+      "prompt": "Camera: The camera follows a walking person with a fixed orientation.",
+      "body_model": null,
+      "frames": 71,
+      "media_sha256": {
+        "assets/demo_14.png": "a363408fd9e0c286a9946b6f0373fd22953cd126255aad369631ab03bd05cccd"
+      }
+    },
+    {
+      "id": "smpl_showcase_v042/reverse-motion-15",
+      "title": "人体反向连续多色",
+      "description": "SMPL人体；反向连续渐变、gamma节奏、灰色关键帧和透明背景。",
+      "tags": [
+        "Motion",
+        "配色",
+        "关键帧",
+        "透明"
+      ],
+      "image": "assets/demo_15.png",
+      "video": null,
+      "gif": null,
+      "blend": null,
+      "receipt": "evidence/demo_15.json",
+      "version": "0.4.2",
+      "source_run": "smpl_showcase_v042/reverse",
+      "mode": "motion",
+      "prompt": "Motion: A person walks.",
+      "body_model": "SMPL-H",
+      "frames": 71,
+      "media_sha256": {
+        "assets/demo_15.png": "6b2f2f7387a2fe6eb097194686a0f0f2ecf71e7145f8c5dc8a77a869af1311b9"
+      }
+    },
+    {
+      "id": "smpl_showcase_v042/reverse-camera-16",
+      "title": "相机反向连续多色",
+      "description": "SMPL人体；反向连续渐变、gamma节奏、灰色关键帧和透明背景。",
+      "tags": [
+        "Camera",
+        "配色",
+        "关键帧",
+        "透明"
+      ],
+      "image": "assets/demo_16.png",
+      "video": null,
+      "gif": null,
+      "blend": null,
+      "receipt": "evidence/demo_16.json",
+      "version": "0.4.2",
+      "source_run": "smpl_showcase_v042/reverse",
+      "mode": "camera",
+      "prompt": "Camera: The camera follows a walking person with a fixed orientation.",
+      "body_model": null,
+      "frames": 71,
+      "media_sha256": {
+        "assets/demo_16.png": "2a57925c2f5ebabbb23fcfab7685cc2d1979e5afd64e81ce635c05bedb387877"
+      }
+    },
+    {
+      "id": "smpl_showcase_v042/reverse-motion-camera-17",
+      "title": "联合反向连续多色",
+      "description": "SMPL人体；反向连续渐变、gamma节奏、灰色关键帧和透明背景。",
+      "tags": [
+        "联合",
+        "配色",
+        "关键帧",
+        "透明"
+      ],
+      "image": "assets/demo_17.png",
+      "video": null,
+      "gif": null,
+      "blend": null,
+      "receipt": "evidence/demo_17.json",
+      "version": "0.4.2",
+      "source_run": "smpl_showcase_v042/reverse",
+      "mode": "motion-camera",
+      "prompt": "Motion: A person walks. Camera: The camera follows the person with a fixed orientation.",
+      "body_model": "SMPL-H",
+      "frames": 71,
+      "media_sha256": {
+        "assets/demo_17.png": "65f3617d045c79ce0bc800452943c843f1a0669433b73e84a0f0b466c39ac00d"
+      }
+    },
+    {
+      "id": "smpl_showcase_v042/solid-motion-18",
+      "title": "SMPL人体纯色",
+      "description": "同一颜色贯穿全时序，不做深浅渐变。",
+      "tags": [
+        "Motion",
+        "配色"
+      ],
+      "image": "assets/demo_18.png",
+      "video": null,
+      "gif": null,
+      "blend": null,
+      "receipt": "evidence/demo_18.json",
+      "version": "0.4.2",
+      "source_run": "smpl_showcase_v042/solid",
+      "mode": "motion",
+      "prompt": "Motion: A person walks.",
+      "body_model": "SMPL-H",
+      "frames": 71,
+      "media_sha256": {
+        "assets/demo_18.png": "e72a64223f6a179bfd93d26b318b5acccae01b35bdb18cb60bff2780180c54d9"
+      }
+    },
+    {
+      "id": "smpl_showcase_v042/fixed_camera-motion-camera-19",
+      "title": "固定机位，人物行走",
+      "description": "原有SMPL动作完全保留，相机位置与朝向保持不变。",
+      "tags": [
+        "联合",
+        "动态示例",
+        "视频"
+      ],
+      "image": "assets/demo_19.png",
+      "video": "assets/demo_19.mp4",
+      "gif": "assets/demo_19.gif",
+      "blend": null,
+      "receipt": "evidence/demo_19.json",
+      "version": "0.4.2",
+      "source_run": "smpl_showcase_v042/fixed_camera",
+      "mode": "motion-camera",
+      "prompt": "Motion: A person walks. Camera: The camera stays at a fixed position and orientation.",
+      "body_model": "SMPL-H",
+      "frames": 71,
+      "media_sha256": {
+        "assets/demo_19.png": "033f2294473b6d64fec6c7091fbb368d7319a6073ae5d09908ea0fceacef3410",
+        "assets/demo_19.mp4": "9b9fab4ec85df121fb49cf1d0ee5cbe546de216cdf16c44734af33188ca61e4e",
+        "assets/demo_19.gif": "e83ea9c49e3201fa230f0d6007ed7d10da04462f9229eb618a6c57f1ea3b84cb"
+      }
+    },
+    {
+      "id": "smpl_showcase_v042/fixed_camera-camera-view-20",
+      "title": "固定机位的实际拍摄画面",
+      "description": "看人物走过画面，验证相机没有自动跟随。",
+      "tags": [
+        "真实视角",
+        "动态示例",
+        "视频"
+      ],
+      "image": null,
+      "video": "assets/demo_20.mp4",
+      "gif": "assets/demo_20.gif",
+      "blend": null,
+      "receipt": "evidence/demo_20.json",
+      "version": "0.4.2",
+      "source_run": "smpl_showcase_v042/fixed_camera",
+      "mode": "camera-view",
+      "prompt": "Motion: A person walks. Camera: The camera stays at a fixed position and orientation.",
+      "body_model": "SMPL-H",
+      "frames": 71,
+      "media_sha256": {
+        "assets/demo_20.mp4": "6eccf22375a501f1e3e17a906401c94f749382f1412cc81d8e77b7cc448dfc7c",
+        "assets/demo_20.gif": "cd6cfe61e98ac54343cb69b2630680fc3400e5c9c9d2a557e01ab35153f3d96c"
+      }
+    },
+    {
+      "id": "smpl_showcase_v042/orbit_camera-motion-camera-21",
+      "title": "环绕并跟随SMPL人体",
+      "description": "只改变相机，人体网格、root和时间不变。",
+      "tags": [
+        "联合",
+        "动态示例",
+        "配色"
+      ],
+      "image": "assets/demo_21.png",
+      "video": null,
+      "gif": null,
+      "blend": null,
+      "receipt": "evidence/demo_21.json",
+      "version": "0.4.2",
+      "source_run": "smpl_showcase_v042/orbit_camera",
+      "mode": "motion-camera",
+      "prompt": "Motion: A person walks. Camera: The camera orbits and follows the person.",
+      "body_model": "SMPL-H",
+      "frames": 71,
+      "media_sha256": {
+        "assets/demo_21.png": "eda4cc79fedb4999c6ef61af37c100bfbdab33bfa9107ba730d435f12f95d5d1"
+      }
+    }
+  ]
+}

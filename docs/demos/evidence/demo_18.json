@@ -1,0 +1,13 @@
+{
+  "demo_id": "smpl_showcase_v042/solid-motion-18",
+  "render_status": "PASS",
+  "renderer_version": "0.4.2",
+  "frames": 71,
+  "body_model": "SMPL-H",
+  "prompt": "Motion: A person walks.",
+  "source_receipt_sha256": "f28e5c37522388511297db16300b5cd4f500b6b76d55a5bb59b8f576d30e1932",
+  "media_sha256": {
+    "assets/demo_18.png": "e72a64223f6a179bfd93d26b318b5acccae01b35bdb18cb60bff2780180c54d9"
+  },
+  "scope": "Public summary of the original render receipt. Source file paths, commands, private geometry and internal logs are not distributed."
+}

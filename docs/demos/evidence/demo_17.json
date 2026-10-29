@@ -1,0 +1,13 @@
+{
+  "demo_id": "smpl_showcase_v042/reverse-motion-camera-17",
+  "render_status": "PASS",
+  "renderer_version": "0.4.2",
+  "frames": 71,
+  "body_model": "SMPL-H",
+  "prompt": "Motion: A person walks. Camera: The camera follows the person with a fixed orientation.",
+  "source_receipt_sha256": "f37a9f3d699e8fd3501c55fa15152e4c710d4d701812e40b4bd331541783b959",
+  "media_sha256": {
+    "assets/demo_17.png": "65f3617d045c79ce0bc800452943c843f1a0669433b73e84a0f0b466c39ac00d"
+  },
+  "scope": "Public summary of the original render receipt. Source file paths, commands, private geometry and internal logs are not distributed."
+}

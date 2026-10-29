@@ -1,0 +1,13 @@
+{
+  "demo_id": "multi_palette_stage-motion-camera-12",
+  "render_status": "PASS",
+  "renderer_version": "0.3.0",
+  "frames": 71,
+  "body_model": "SMPL-H",
+  "prompt": "Motion: A person walks. Camera: The camera follows the person with a fixed orientation.",
+  "source_receipt_sha256": "69b175ae52fc5530d83c1c370e3bb47fb93776cd14045f2621eca1fb3d2842ff",
+  "media_sha256": {
+    "assets/demo_12.png": "97d9d9a832421cd3e01d53b16f8a2f634a92f1599c5d23c6e3112703d26d54d2"
+  },
+  "scope": "Public summary of the original render receipt. Source file paths, commands, private geometry and internal logs are not distributed."
+}

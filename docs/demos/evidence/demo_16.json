@@ -1,0 +1,13 @@
+{
+  "demo_id": "smpl_showcase_v042/reverse-camera-16",
+  "render_status": "PASS",
+  "renderer_version": "0.4.2",
+  "frames": 71,
+  "body_model": null,
+  "prompt": "Camera: The camera follows a walking person with a fixed orientation.",
+  "source_receipt_sha256": "f37a9f3d699e8fd3501c55fa15152e4c710d4d701812e40b4bd331541783b959",
+  "media_sha256": {
+    "assets/demo_16.png": "2a57925c2f5ebabbb23fcfab7685cc2d1979e5afd64e81ce635c05bedb387877"
+  },
+  "scope": "Public summary of the original render receipt. Source file paths, commands, private geometry and internal logs are not distributed."
+}

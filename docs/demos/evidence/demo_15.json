@@ -1,0 +1,13 @@
+{
+  "demo_id": "smpl_showcase_v042/reverse-motion-15",
+  "render_status": "PASS",
+  "renderer_version": "0.4.2",
+  "frames": 71,
+  "body_model": "SMPL-H",
+  "prompt": "Motion: A person walks.",
+  "source_receipt_sha256": "f37a9f3d699e8fd3501c55fa15152e4c710d4d701812e40b4bd331541783b959",
+  "media_sha256": {
+    "assets/demo_15.png": "6b2f2f7387a2fe6eb097194686a0f0f2ecf71e7145f8c5dc8a77a869af1311b9"
+  },
+  "scope": "Public summary of the original render receipt. Source file paths, commands, private geometry and internal logs are not distributed."
+}

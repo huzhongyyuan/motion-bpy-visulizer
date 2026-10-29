@@ -1,0 +1,15 @@
+{
+  "demo_id": "native_following-motion-4",
+  "render_status": "PASS",
+  "renderer_version": "0.1.0",
+  "frames": 71,
+  "body_model": "SMPL-H",
+  "prompt": "Motion: A person walks.",
+  "source_receipt_sha256": "df3ddf2a74fe9f3eb48cf0dd395247959fee4472e434373061d94cad842fc6c7",
+  "media_sha256": {
+    "assets/demo_04.png": "3ceee06337396adc2fec3497044f705abfe8af2cb82ba95ca4c31e47609edda5",
+    "assets/demo_04.mp4": "1475f228771356b5d931408222b60c5ced1fa64494049f9e149c571cef7e8f5f",
+    "assets/demo_04.gif": "9b1eeec5ccb08d6947bdb45853b52ef85d0a6dc7e3ac9c73d526398a04b3792b"
+  },
+  "scope": "Public summary of the original render receipt. Source file paths, commands, private geometry and internal logs are not distributed."
+}

@@ -1,0 +1,15 @@
+{
+  "demo_id": "native_following-camera-5",
+  "render_status": "PASS",
+  "renderer_version": "0.1.0",
+  "frames": 71,
+  "body_model": null,
+  "prompt": "Camera: The camera follows a walking person with a fixed orientation.",
+  "source_receipt_sha256": "df3ddf2a74fe9f3eb48cf0dd395247959fee4472e434373061d94cad842fc6c7",
+  "media_sha256": {
+    "assets/demo_05.png": "bcdd8c598d301d480f4d0f973fab6124a6c43d7640630803fee29fbe54edaae9",
+    "assets/demo_05.mp4": "9e996dfec35924f758bbe1c81bd86ffc4e9d2e14298e461afa6598be46ecd43d",
+    "assets/demo_05.gif": "81a86c152c979b8f2f3e1959c355047ef3a1a1949d9d8c2bb075313c1a93213c"
+  },
+  "scope": "Public summary of the original render receipt. Source file paths, commands, private geometry and internal logs are not distributed."
+}

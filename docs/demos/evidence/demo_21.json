@@ -1,0 +1,13 @@
+{
+  "demo_id": "smpl_showcase_v042/orbit_camera-motion-camera-21",
+  "render_status": "PASS",
+  "renderer_version": "0.4.2",
+  "frames": 71,
+  "body_model": "SMPL-H",
+  "prompt": "Motion: A person walks. Camera: The camera orbits and follows the person.",
+  "source_receipt_sha256": "ddc0e9c55509bdb92d7b97858d1a3880393a8a9e8e67c869f5030d0f359de21a",
+  "media_sha256": {
+    "assets/demo_21.png": "eda4cc79fedb4999c6ef61af37c100bfbdab33bfa9107ba730d435f12f95d5d1"
+  },
+  "scope": "Public summary of the original render receipt. Source file paths, commands, private geometry and internal logs are not distributed."
+}

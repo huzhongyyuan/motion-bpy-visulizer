@@ -1,0 +1,15 @@
+{
+  "demo_id": "native_following-motion-camera-6",
+  "render_status": "PASS",
+  "renderer_version": "0.1.0",
+  "frames": 71,
+  "body_model": "SMPL-H",
+  "prompt": "Motion: A person walks. Camera: The camera follows the person with a fixed orientation.",
+  "source_receipt_sha256": "df3ddf2a74fe9f3eb48cf0dd395247959fee4472e434373061d94cad842fc6c7",
+  "media_sha256": {
+    "assets/demo_06.png": "f0279c8dc3e05e7077935ed95f6255621280ba708513983f12c56049fc7f780f",
+    "assets/demo_06.mp4": "787f2e093137986375b63454346b4f6d86a6664c9df90477dea13fceb36db287",
+    "assets/demo_06.gif": "9d5d0a8cad7af37da52c70053148e23b3efe731bc81da654aa045d8670c68f23"
+  },
+  "scope": "Public summary of the original render receipt. Source file paths, commands, private geometry and internal logs are not distributed."
+}

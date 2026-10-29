@@ -1,0 +1,15 @@
+{
+  "demo_id": "smpl_showcase_v042/fixed_camera-motion-camera-19",
+  "render_status": "PASS",
+  "renderer_version": "0.4.2",
+  "frames": 71,
+  "body_model": "SMPL-H",
+  "prompt": "Motion: A person walks. Camera: The camera stays at a fixed position and orientation.",
+  "source_receipt_sha256": "c104b76989c46d4f916cf003841cb67fb07055793c213fbff25a6574cc05a3c4",
+  "media_sha256": {
+    "assets/demo_19.png": "033f2294473b6d64fec6c7091fbb368d7319a6073ae5d09908ea0fceacef3410",
+    "assets/demo_19.mp4": "9b9fab4ec85df121fb49cf1d0ee5cbe546de216cdf16c44734af33188ca61e4e",
+    "assets/demo_19.gif": "e83ea9c49e3201fa230f0d6007ed7d10da04462f9229eb618a6c57f1ea3b84cb"
+  },
+  "scope": "Public summary of the original render receipt. Source file paths, commands, private geometry and internal logs are not distributed."
+}

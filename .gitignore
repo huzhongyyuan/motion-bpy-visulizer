@@ -1,0 +1,22 @@
+__pycache__/
+*.py[cod]
+.venv/
+*.egg-info/
+build/
+dist/
+outputs/
+examples/generated/
+*.blend1
+.DS_Store
+
+# Private render inputs and local evidence
+*.blend
+*.npz
+*.pkl
+*.pt
+*.pth
+*.ckpt
+.env
+.env.*
+examples/preview/
+docs/unit_tests.log

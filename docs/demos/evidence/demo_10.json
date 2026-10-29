@@ -1,0 +1,13 @@
+{
+  "demo_id": "native_transparent-motion-camera-10",
+  "render_status": "PASS",
+  "renderer_version": "0.1.1",
+  "frames": 71,
+  "body_model": "SMPL-H",
+  "prompt": "Motion: A person walks. Camera: The camera follows the person with a fixed orientation.",
+  "source_receipt_sha256": "05f2aea6d1288d4c3fde1aef4e71f0d188aaf3bad49782d31e8429c876cad165",
+  "media_sha256": {
+    "assets/demo_10.png": "69d77014fd109cbc35e8afa76069368074cb96e3a8504e1681429687f2fff888"
+  },
+  "scope": "Public summary of the original render receipt. Source file paths, commands, private geometry and internal logs are not distributed."
+}

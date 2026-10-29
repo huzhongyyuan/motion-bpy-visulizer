@@ -1,0 +1,13 @@
+{
+  "demo_id": "flat_frustum_v041-camera-1",
+  "render_status": "PASS",
+  "renderer_version": "0.4.1",
+  "frames": 71,
+  "body_model": null,
+  "prompt": "Camera: The camera follows a walking person with a fixed orientation.",
+  "source_receipt_sha256": "8c601adcc25365497f4f0d7e4b7bc54cf81eb8bce832d81fb79474559009b049",
+  "media_sha256": {
+    "assets/demo_01.png": "0763a4621c1d1da49f2ae7c0a988a5a04cef36614b2c11374389ced4420dc48f"
+  },
+  "scope": "Public summary of the original render receipt. Source file paths, commands, private geometry and internal logs are not distributed."
+}

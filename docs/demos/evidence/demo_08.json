@@ -1,0 +1,13 @@
+{
+  "demo_id": "native_transparent-motion-8",
+  "render_status": "PASS",
+  "renderer_version": "0.1.1",
+  "frames": 71,
+  "body_model": "SMPL-H",
+  "prompt": "Motion: A person walks.",
+  "source_receipt_sha256": "05f2aea6d1288d4c3fde1aef4e71f0d188aaf3bad49782d31e8429c876cad165",
+  "media_sha256": {
+    "assets/demo_08.png": "fad8732d02a3ed22de052e0cae58d662d50263fc8ce2f64e05149cc8f1077155"
+  },
+  "scope": "Public summary of the original render receipt. Source file paths, commands, private geometry and internal logs are not distributed."
+}

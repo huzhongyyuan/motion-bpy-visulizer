@@ -1,0 +1,13 @@
+{
+  "demo_id": "flat_camera_icon_v041-motion-camera-2",
+  "render_status": "PASS",
+  "renderer_version": "0.4.1",
+  "frames": 71,
+  "body_model": "SMPL-H",
+  "prompt": "Motion: A person walks. Camera: The camera follows the person with a fixed orientation.",
+  "source_receipt_sha256": "8d7d7aa0f165d90f3856f3f3e9c727970aa8a67f5a9cfad4d5ebb6fa9bac675b",
+  "media_sha256": {
+    "assets/demo_02.png": "8c7e55f8e95483bc61681ea6f81c107fdaf18e020be7ae3c37df7df8c334f49d"
+  },
+  "scope": "Public summary of the original render receipt. Source file paths, commands, private geometry and internal logs are not distributed."
+}

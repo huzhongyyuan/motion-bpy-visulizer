@@ -1,0 +1,13 @@
+{
+  "demo_id": "camera_design_v4-camera-14",
+  "render_status": "PASS",
+  "renderer_version": "0.4.0",
+  "frames": 71,
+  "body_model": null,
+  "prompt": "Camera: The camera follows a walking person with a fixed orientation.",
+  "source_receipt_sha256": "783ed6c3824502430de75f52e96e246b731e2c0aa6f22ef460c2e3c806b07af1",
+  "media_sha256": {
+    "assets/demo_14.png": "a363408fd9e0c286a9946b6f0373fd22953cd126255aad369631ab03bd05cccd"
+  },
+  "scope": "Public summary of the original render receipt. Source file paths, commands, private geometry and internal logs are not distributed."
+}
